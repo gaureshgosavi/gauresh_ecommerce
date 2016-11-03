@@ -1,0 +1,9 @@
+body{
+	padding-top: 60px;
+}
+.wrapper{
+	min-height: 500px;
+}
+.footer{
+	font-size: 0.75em;
+}
