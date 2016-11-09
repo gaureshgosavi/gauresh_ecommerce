@@ -48,6 +48,12 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.3.3.RELEASE</version>
 		</dependency>
+		<!--spring-orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.3.3.RELEASE</version>
+		</dependency>
 
 	</dependencies>
 </project>
