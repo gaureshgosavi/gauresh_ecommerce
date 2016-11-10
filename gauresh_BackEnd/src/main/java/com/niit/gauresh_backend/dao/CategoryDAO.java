@@ -12,7 +12,7 @@ public interface CategoryDAO {
 
 	public boolean delete(Category category);
 
-	public Category get(String id);
+	public Category get(int id);
 
 	public List<Category> list();
 
