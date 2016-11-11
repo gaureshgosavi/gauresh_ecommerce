@@ -6,7 +6,7 @@ import com.niit.gauresh_backend.model.Category;
 
 public interface CategoryDAO {
 
-	public boolean save(Category category);
+	public boolean create(Category category);
 
 	public boolean update(Category category);
 

@@ -54,6 +54,12 @@
 			<artifactId>spring-orm</artifactId>
 			<version>4.3.3.RELEASE</version>
 		</dependency>
+		<!-- h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.193</version>
+		</dependency>
 
 	</dependencies>
 </project>

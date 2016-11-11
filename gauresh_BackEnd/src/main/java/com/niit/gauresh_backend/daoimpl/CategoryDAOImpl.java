@@ -15,16 +15,19 @@ import com.niit.gauresh_backend.model.Category;
 
 @Repository("CategoryDAO")
 public class CategoryDAOImpl implements CategoryDAO {
-	
+
 	@Autowired
 	SessionFactory sessionFactory;
 
 	public CategoryDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory=sessionFactory;
+		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Transactional
-	public boolean save(Category category) {
+	public boolean create(Category category) {
+		// if(get(category.getId()) == null){
+		// return false;
+		// }
 		try {
 			sessionFactory.getCurrentSession().save(category);
 			return true;
@@ -55,15 +58,13 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Transactional
 	public Category get(int id) {
-		return	(Category)sessionFactory.getCurrentSession().get(Category.class, id);
+		return (Category) sessionFactory.getCurrentSession().get(Category.class, id);
 	}
 
 	@Transactional
 	public List<Category> list() {
-		String hql="from Category";
+		String hql = "from Category";
 		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
-	
-	
 
 }
