@@ -31,82 +31,85 @@
 </div>
 --%>
 
-<div id="the-slider" class="carousel slide" data-ride="carousel">
+<div class="container-fluid">
+	<div id="the-slider" class="carousel slide" data-ride="carousel">
 
-	<ol class="carousel-indicators">
-		<li data-target="#the-slider" data-slide-to="0" class="active"></li>
-		<li data-target="#the-slider" data-slide-to="1"></li>
-		<li data-target="#the-slider" data-slide-to="2"></li>
-	</ol>
+		<ol class="carousel-indicators">
+			<li data-target="#the-slider" data-slide-to="0" class="active"></li>
+			<li data-target="#the-slider" data-slide-to="1"></li>
+			<li data-target="#the-slider" data-slide-to="2"></li>
+		</ol>
 
-	<div class="carousel-inner" role="listbox">
+		<div class="carousel-inner" role="listbox">
 
-		<div class="item active">
-			<img class="First slide" alt="First slide"
-				src="${images}/drumkit.jpg">
+			<div class="item active">
+				<img class="First slide" alt="First slide"
+					src="${images}/drumkit.jpg">
+			</div>
+			<!-- item 1-->
+
+			<div class="item">
+				<img class="Second slide" alt="Second slide"
+					src="${images}/guitar.jpg">
+			</div>
+			<!-- item 2-->
+
+			<div class="item">
+				<img class="Third slide" alt="Third slide"
+					src="${images}/keyboard.jpg">
+			</div>
+			<!-- item 3-->
+
 		</div>
-		<!-- item 1-->
+		<!-- carousel-inner -->
 
-		<div class="item">
-			<img class="Second slide" alt="Second slide"
-				src="${images}/guitar.jpg">
-		</div>
-		<!-- item 2-->
-
-		<div class="item">
-			<img class="Third slide" alt="Third slide"
-				src="${images}/keyboard.jpg">
-		</div>
-		<!-- item 3-->
+		<!-- controls -->
+		<a class="left carousel-control" href="#the-slider" role="button"
+			data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
+			aria-hidden="true"></span> <span class="sr-only">Previous</span>
+		</a> <a class="right carousel-control" href="#the-slider" role="button"
+			data-slide="next"> <span
+			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
 
 	</div>
-	<!-- carousel-inner -->
-
-	<!-- controls -->
-	<a class="left carousel-control" href="#the-slider" role="button"
-		data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
-		aria-hidden="true"></span> <span class="sr-only">Previous</span>
-	</a> <a class="right carousel-control" href="#the-slider" role="button"
-		data-slide="next"> <span class="glyphicon glyphicon-chevron-right"
-		aria-hidden="true"></span> <span class="sr-only">Next</span>
-	</a>
-
-</div>
-<!-- the slider -->
+	<!-- the slider -->
 
 
-<!-- /.container -->
-<hr>
-<div class="container">
-	<div class="row">
-		<div class="col-lg-3">
-			<img class="image-square" alt="image" src="" width="170px"
-				height="170px">
-			<h2>Keyboard</h2>
-			<p>This is keyboard</p>
+	<!-- /.container -->
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<img class="image-square" alt="image" src="" width="170px"
+					height="170px">
+				<h2>Keyboard</h2>
+				<p>This is keyboard</p>
+			</div>
+
+			<div class="col-lg-3">
+				<img class="image-square" alt="image" src="" width="170px"
+					height="170px">
+				<h2>Guitar</h2>
+				<p>This is Guitar</p>
+			</div>
+
+			<div class="col-lg-3">
+				<img class="image-square" alt="image" src="" width="170px"
+					height="170px">
+				<h2>Drums</h2>
+				<p>This is Drums</p>
+			</div>
+
+			<div class="col-lg-3">
+				<img class="image-square" alt="image" src="" width="170px"
+					height="170px">
+				<h2>Flute</h2>
+				<p>This is Flute</p>
+			</div>
+
 		</div>
-
-		<div class="col-lg-3">
-			<img class="image-square" alt="image" src="" width="170px"
-				height="170px">
-			<h2>Guitar</h2>
-			<p>This is Guitar</p>
-		</div>
-
-		<div class="col-lg-3">
-			<img class="image-square" alt="image" src="" width="170px"
-				height="170px">
-			<h2>Drums</h2>
-			<p>This is Drums</p>
-		</div>
-
-		<div class="col-lg-3">
-			<img class="image-square" alt="image" src="" width="170px"
-				height="170px">
-			<h2>Flute</h2>
-			<p>This is Flute</p>
-		</div>
-
 	</div>
-</div>
 
+</div>

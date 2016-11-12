@@ -10,7 +10,7 @@ public class PageController {
 	@RequestMapping(value = { "/", "/index"})
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("ifUserClickedHome ", true);
+		mv.addObject("ifUserClickedHome", true);
 		mv.addObject("title", "index");
 		return mv;
 	}
@@ -38,6 +38,7 @@ public class PageController {
 		mv.addObject("title", "admin");
 		return mv;
 	}
+	
 	@RequestMapping(value = "/login")
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView("page");
@@ -45,4 +46,21 @@ public class PageController {
 		mv.addObject("title", "login");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/product")
+	public ModelAndView product() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("ifUserClickedProduct", true);
+		mv.addObject("title", "product");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/productDetail")
+	public ModelAndView productDetail() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("ifUserClickedProductDetail", true);
+		mv.addObject("title", "productDetail");
+		return mv;
+	}
+	
 }

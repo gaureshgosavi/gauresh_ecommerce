@@ -50,7 +50,7 @@
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="${contextPath}/index">Home</a></li>
-							<li><a href="${contextPath}/products">Products</a></li>
+							<li><a href="${contextPath}/product">Products</a></li>
 							<li><a href="${contextPath}/about">About us</a></li>
 							<li><a href="${contextPath}/contact">Contact us</a></li>
 							<li><a href="${contextPath}/admin">Admin</a></li>
