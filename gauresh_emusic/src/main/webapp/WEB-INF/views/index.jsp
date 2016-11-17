@@ -38,13 +38,14 @@
 			<li data-target="#the-slider" data-slide-to="0" class="active"></li>
 			<li data-target="#the-slider" data-slide-to="1"></li>
 			<li data-target="#the-slider" data-slide-to="2"></li>
+			<li data-target="#the-slider" data-slide-to="3"></li>
+			<li data-target="#the-slider" data-slide-to="4"></li>
 		</ol>
 
 		<div class="carousel-inner" role="listbox">
 
 			<div class="item active">
-				<img class="First slide" alt="First slide"
-					src="${images}/drumkit.jpg">
+				<img class="First slide" alt="First slide" src="${images}/drums.jpg">
 			</div>
 			<!-- item 1-->
 
@@ -59,6 +60,18 @@
 					src="${images}/keyboard.jpg">
 			</div>
 			<!-- item 3-->
+			
+			<div class="item">
+				<img class="Fourth slide" alt="Fourth slide"
+					src="${images}/amplifier.jpg">
+			</div>
+			<!-- item 4-->
+			
+			<div class="item">
+				<img class="Fifth slide" alt="Fifth slide"
+					src="${images}/mic.jpg">
+			</div>
+			<!-- item 5-->
 
 		</div>
 		<!-- carousel-inner -->
@@ -76,40 +89,58 @@
 	</div>
 	<!-- the slider -->
 
+	<div class="container">
+		<div class="jumbotron">
+			<h2>"Without music, life would be a mistake"</h2>
+			<h1>LET's GET MORE INTO MUSIC....</h1>
+		</div>
+	</div>
 
 	<!-- /.container -->
 	<hr>
 	<div class="container">
+		<h3>TOP SELLING PRODUCTS</h3>
 		<div class="row">
-			<div class="col-lg-3">
-				<img class="image-square" alt="image" src="" width="170px"
-					height="170px">
-				<h2>Keyboard</h2>
-				<p>This is keyboard</p>
-			</div>
-
-			<div class="col-lg-3">
-				<img class="image-square" alt="image" src="" width="170px"
-					height="170px">
-				<h2>Guitar</h2>
+			<div class="col-md-3 col-sm-6">
+				<img class="image-square" alt="image" src="${images}/ibanez.jpg"
+					width="170px" height="170px">
+				<h2>Ibanez ATK200 BK</h2>
 				<p>This is Guitar</p>
+				<a href="#">
+					<button class="btn btn-secondary">View Product</button>
+				</a>
 			</div>
 
-			<div class="col-lg-3">
-				<img class="image-square" alt="image" src="" width="170px"
-					height="170px">
-				<h2>Drums</h2>
-				<p>This is Drums</p>
+			<div class="col-md-3 col-sm-6">
+				<img class="image-square" alt="image" src="${images}/roland.jpg"
+					width="170px" height="170px">
+				<h2>Roland 76-note XP-80</h2>
+				<p>This is Keyboard</p>
+				<a href="#">
+					<button class="btn btn-secondary">View Product</button>
+				</a>
 			</div>
 
-			<div class="col-lg-3">
-				<img class="image-square" alt="image" src="" width="170px"
-					height="170px">
-				<h2>Flute</h2>
+			<div class="col-md-3 col-sm-6">
+				<img class="image-square" alt="image" src="${images}/flute.jpg"
+					width="170px" height="170px">
+				<h2>YFL-211</h2>
 				<p>This is Flute</p>
+				<a href="#">
+					<button class="btn btn-secondary">View Product</button>
+				</a>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<img class="image-square" alt="image" src="${images}/stagg.jpg"
+					width="170px" height="170px">
+				<h2>Stagg TIM622LBK 5-Piece Drum Set</h2>
+				<p>This is Drumkit</p>
+				<a href="#">
+					<button class="btn btn-secondary">View Product</button>
+				</a>
 			</div>
 
 		</div>
 	</div>
-
 </div>

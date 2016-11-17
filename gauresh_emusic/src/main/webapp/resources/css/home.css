@@ -6,6 +6,15 @@ body {
 	color: #5a5a5a;
 	margin: 0px;
 	padding-bottom: 40px;
+	repeat:repeat;
+	
+}
+
+h1 {
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+h2{
+	font-family : sans-serif;
 }
 
 /* CUSTOMIZE THE NAVBAR
@@ -42,7 +51,7 @@ body {
 .carousel {
 	height: 500px;
 	margin-bottom: 60px;
-	margin-top: -60px;
+	margin-top: -90px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
