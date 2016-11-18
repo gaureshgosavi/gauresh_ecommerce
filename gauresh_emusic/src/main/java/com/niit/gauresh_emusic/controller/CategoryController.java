@@ -1,5 +1,7 @@
 package com.niit.gauresh_emusic.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,5 +23,11 @@ public class CategoryController {
 		
 		Category c= categoryDAO.get(id);
 		return c;
+	}
+	@RequestMapping("/list")
+	public @ResponseBody List<Category> getAllProducts() {
+		
+		Category c= (Category) categoryDAO.list();
+		return (List<Category>) c;
 	}
 }

@@ -3,6 +3,8 @@ package com.niit.gauresh_backend.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,6 +22,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = -1209956459260891901L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int productId;
 	private int categoryId;
 	private int supplierId;

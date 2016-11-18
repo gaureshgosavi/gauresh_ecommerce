@@ -15,6 +15,7 @@ public class ProductController {
 
 	@Autowired
 	private ProductDAO productDAO;
+	
 	@RequestMapping("/{id}")
 	public @ResponseBody Product getProductById(@PathVariable("id") int id) {
 		
