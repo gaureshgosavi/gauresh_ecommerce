@@ -19,15 +19,15 @@ public class CategoryController {
 	private CategoryDAO categoryDAO;
 	
 	@RequestMapping("/{id}")
-	public @ResponseBody Category getProductById(@PathVariable("id") int id) {
+	public @ResponseBody Category getCategoryById(@PathVariable("id") int id) {
 		
-		Category c= categoryDAO.get(id);
-		return c;
+		Category cat= categoryDAO.get(id);
+		return cat;
 	}
-	@RequestMapping("/list")
-	public @ResponseBody List<Category> getAllProducts() {
-		
-		Category c= (Category) categoryDAO.list();
-		return (List<Category>) c;
+	
+	@RequestMapping("/all")
+	public @ResponseBody List<Category> getAllCategory(){
+		List<Category> catList= categoryDAO.list();
+		return catList;
 	}
 }

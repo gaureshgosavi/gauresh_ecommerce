@@ -1,5 +1,7 @@
 package com.niit.gauresh_emusic.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,5 +23,11 @@ public class ProductController {
 		
 		Product p= productDAO.get(id);
 		return p;
+	}
+	
+	@RequestMapping("/all")
+	public @ResponseBody List<Product> getAllProduct(){
+		List<Product> productList= productDAO.list();
+		return productList;
 	}
 }

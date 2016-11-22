@@ -39,7 +39,6 @@
 			<li data-target="#the-slider" data-slide-to="1"></li>
 			<li data-target="#the-slider" data-slide-to="2"></li>
 			<li data-target="#the-slider" data-slide-to="3"></li>
-			<li data-target="#the-slider" data-slide-to="4"></li>
 		</ol>
 
 		<div class="carousel-inner" role="listbox">
@@ -60,18 +59,11 @@
 					src="${images}/keyboard.jpg">
 			</div>
 			<!-- item 3-->
-			
+
 			<div class="item">
-				<img class="Fourth slide" alt="Fourth slide"
-					src="${images}/amplifier.jpg">
+				<img class="Fourth slide" alt="Fourth slide" src="${images}/mic.jpg">
 			</div>
 			<!-- item 4-->
-			
-			<div class="item">
-				<img class="Fifth slide" alt="Fifth slide"
-					src="${images}/mic.jpg">
-			</div>
-			<!-- item 5-->
 
 		</div>
 		<!-- carousel-inner -->

@@ -28,8 +28,9 @@ public class Product implements Serializable {
 	private int supplierId;
 	private String name;
 	private String description;
-	private double unitPrice;
+	private int unitPrice;
 	private int quantity;
+	
 	public int getProductId() {
 		return productId;
 	}
@@ -63,7 +64,7 @@ public class Product implements Serializable {
 	public double getUnitPrice() {
 		return unitPrice;
 	}
-	public void setUnitPrice(double unitPrice) {
+	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 	public int getQuantity() {

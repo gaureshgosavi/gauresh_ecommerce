@@ -93,3 +93,85 @@
 	</div>
 	<!-- Supplier -->
 </div>
+
+<hr>
+<h3>Category</h3>
+<div class="container ">
+	<table class="table table-responsive">
+		<thead>
+			<tr>
+				<th>ProductID</th>
+				<th>CategoryID</th>
+				<th>SupplierID</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>UnitPrice</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${productList}" var="product">
+			<tr>
+				<td>${product.productId}</td>
+				<td>${product.categoryId}</td>
+				<td>${product.supplierId}</td>
+				<td>${product.name}</td>
+				<td>${product.description}</td>
+				<td>${product.unitPrice}</td>
+				<td>${product.quantity}</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+</div>
+<!-- Category -->
+
+<hr>
+<h3>Products</h3>
+<div class="container ">
+	<table class="table table-responsive">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${categoryList}" var="category">
+			<tr>
+				<td>${category.id}</td>
+				<td>${category.name}</td>
+				<td>${category.description}</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+</div>
+<!-- Products -->
+
+<hr>
+<h3>Supplier</h3>
+<div class="container ">
+	<table class="table table-responsive">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Contact No</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${supplierList}" var="supplier">
+			<tr>
+				<td>${supplier.id}</td>
+				<td>${supplier.name}</td>
+				<td>${supplier.email}</td>
+				<td>${supplier.contactNo}</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+</div>
+<!-- Supplier -->

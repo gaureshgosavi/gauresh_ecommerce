@@ -47,7 +47,7 @@ public class PageController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/product")
+	@RequestMapping(value = "/productList")
 	public ModelAndView product() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("ifUserClickedProduct", true);

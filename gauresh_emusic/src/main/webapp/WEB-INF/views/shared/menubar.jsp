@@ -53,7 +53,7 @@
 							<li><a href="${contextPath}/product">Products</a></li>
 							<li><a href="${contextPath}/about">About us</a></li>
 							<li><a href="${contextPath}/contact">Contact us</a></li>
-							<li><a href="${contextPath}/admin">Admin</a></li>
+							<li><a href="${contextPath}/admin/all">Admin</a></li>
 							<li><a href="${contextPath}/login">Login</a></li>
 						</ul>
 					</div>
