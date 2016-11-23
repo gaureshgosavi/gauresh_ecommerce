@@ -2,6 +2,7 @@
 
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <spring:url value="/resources/images" var="images" />
 <spring:url value="/resources/css" var="css" />
@@ -13,6 +14,7 @@
 <%@include file="shared/header.jsp"%>
 </head>
 <body>
+	
 	<%@include file="shared/menubar.jsp"%>
 
 	<c:if test="${ifUserClickedHome == true }">

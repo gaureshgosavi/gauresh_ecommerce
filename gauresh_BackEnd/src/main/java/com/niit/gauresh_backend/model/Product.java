@@ -2,6 +2,7 @@ package com.niit.gauresh_backend.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +24,24 @@ public class Product implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="product_id")
 	private int productId;
+	
+	@Column(name="category_id")
 	private int categoryId;
+	
+	@Column(name="supplier_id")
 	private int supplierId;
+	
 	private String name;
+	
 	private String description;
+	
+	@Column(name="unit_price")
 	private int unitPrice;
+	
 	private int quantity;
+	
 	
 	public int getProductId() {
 		return productId;
