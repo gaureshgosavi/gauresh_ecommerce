@@ -37,9 +37,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Transactional
-	public boolean update(Category category) {
+	public boolean saveOrUpdate(Category category) {
 		try {
-			sessionFactory.getCurrentSession().update(category);
+			sessionFactory.getCurrentSession().saveOrUpdate(category);
 			return true;
 		} catch (HibernateException e) {
 			return false;

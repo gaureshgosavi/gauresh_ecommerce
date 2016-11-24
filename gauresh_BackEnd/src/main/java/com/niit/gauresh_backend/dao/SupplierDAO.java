@@ -8,7 +8,7 @@ public interface SupplierDAO {
 
 	public boolean create(Supplier supplier);
 
-	public boolean update(Supplier supplier);
+	public boolean saveOrUpdate(Supplier supplier);
 
 	public boolean delete(Supplier supplier);
 

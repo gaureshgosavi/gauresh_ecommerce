@@ -48,7 +48,7 @@ public class CategoryTestCase {
 		category.setId(4);
 		category.setDescription("This is instrumental category");
 		
-	Assert.assertEquals("Update category test case", true, categoryDAO.update(category));
+	Assert.assertEquals("Update category test case", true, categoryDAO.saveOrUpdate(category));
 	}
 	
 	@Test

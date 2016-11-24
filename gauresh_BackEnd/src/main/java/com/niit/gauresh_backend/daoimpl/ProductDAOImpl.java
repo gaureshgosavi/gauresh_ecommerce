@@ -36,9 +36,9 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Transactional
-	public boolean update(Product Product) {
+	public boolean saveOrUpdate(Product Product) {
 		try {
-			sessionFactory.getCurrentSession().update(Product);
+			sessionFactory.getCurrentSession().saveOrUpdate(Product);
 			return true;
 		} catch (HibernateException e) {
 			return false;

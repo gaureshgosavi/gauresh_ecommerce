@@ -51,7 +51,7 @@ public class ProductTestCase {
 		Product.setProductId(4);
 		Product.setDescription("This is instrumental Product");
 		
-	    Assert.assertEquals("Update Product test case", true, ProductDAO.update(Product));
+	    Assert.assertEquals("Update Product test case", true, ProductDAO.saveOrUpdate(Product));
 	}
 	
 	@Test

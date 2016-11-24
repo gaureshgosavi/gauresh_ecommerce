@@ -50,7 +50,7 @@ public class SupplierTestCase {
 		Supplier.setId(2);
 		Supplier.setEmail("This is instrumental Supplier");
 
-		Assert.assertEquals("Update Supplier test case", true, SupplierDAO.update(Supplier));
+		Assert.assertEquals("Update Supplier test case", true, SupplierDAO.saveOrUpdate(Supplier));
 	}
 
 	@Test

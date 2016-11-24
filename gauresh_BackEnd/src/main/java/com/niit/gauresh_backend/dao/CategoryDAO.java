@@ -8,7 +8,7 @@ public interface CategoryDAO {
 
 	public boolean create(Category category);
 
-	public boolean update(Category category);
+	public boolean saveOrUpdate(Category category);
 
 	public boolean delete(Category category);
 

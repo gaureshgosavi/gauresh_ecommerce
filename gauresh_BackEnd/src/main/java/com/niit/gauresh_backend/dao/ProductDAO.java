@@ -8,7 +8,7 @@ public interface ProductDAO {
 	
 	public boolean create(Product product);
 
-	public boolean update(Product product);
+	public boolean saveOrUpdate(Product product);
 
 	public boolean delete(Product product);
 

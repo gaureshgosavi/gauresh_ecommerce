@@ -36,9 +36,9 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 	@Transactional
-	public boolean update(Supplier Supplier) {
+	public boolean saveOrUpdate(Supplier Supplier) {
 		try {
-			sessionFactory.getCurrentSession().update(Supplier);
+			sessionFactory.getCurrentSession().saveOrUpdate(Supplier);
 			return true;
 		} catch (HibernateException e) {
 			return false;

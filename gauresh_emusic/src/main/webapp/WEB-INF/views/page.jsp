@@ -30,15 +30,15 @@
 	</c:if>
 
 	<c:if test="${ifUserClickedViewProducts == true }">
-		<%@include file="admin.jsp"%>
+		<%@include file="./admin/viewProducts.jsp"%>
 	</c:if>
 	
 	<c:if test="${ifUserClickedViewCategories == true }">
-		<%@include file="admin.jsp"%>
+		<%@include file="./admin/viewCategories.jsp"%>
 	</c:if>
 	
 	<c:if test="${ifUserClickedViewSuppliers == true }">
-		<%@include file="admin.jsp"%>
+		<%@include file="./admin/viewSuppliers.jsp"%>
 	</c:if>
 
 	<c:if test="${ifUserClickedLogin == true }">
