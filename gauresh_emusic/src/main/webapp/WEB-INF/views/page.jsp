@@ -29,7 +29,15 @@
 		<%@include file="contact.jsp"%>
 	</c:if>
 
-	<c:if test="${ifUserClickedAdmin == true }">
+	<c:if test="${ifUserClickedViewProducts == true }">
+		<%@include file="admin.jsp"%>
+	</c:if>
+	
+	<c:if test="${ifUserClickedViewCategories == true }">
+		<%@include file="admin.jsp"%>
+	</c:if>
+	
+	<c:if test="${ifUserClickedViewSuppliers == true }">
 		<%@include file="admin.jsp"%>
 	</c:if>
 

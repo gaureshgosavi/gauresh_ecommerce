@@ -2,39 +2,39 @@
 	<div class="container col-md-4">
 		<fieldset>
 			<legend>Add New Product</legend>
-			<form:form method="post" action="${contextPath}/admin/product/save" modelAttribute="product" styleClass="form-vertical">
+			<form:form method="post" action="${contextPath}/admin/product/save"
+				modelAttribute="product" styleClass="form-vertical">
 				<div class="form-group">
 					<label for="name">Product name</label>
-					<form:input type="text" styleClass="form-control" path="name" id="name"
-						placeholder="Name" />
+					<form:input type="text" styleClass="form-control" path="name"
+						id="name" placeholder="Name" />
 				</div>
 				<div class="form-group">
 					<label for="description">Description</label>
-					<form:textarea path="description" styleClass="form-control" rows="3" id="description"
-						placeholder="Description"></form:textarea>
+					<form:textarea path="description" styleClass="form-control"
+						rows="3" id="description" placeholder="Description"></form:textarea>
 				</div>
 				<div class="form-group">
-					<label for="category">Category</label> 
-					
-					<select class="form-control"
-						id="category">
-						<option>Category1</option>
-						<option>Category2</option>
-						<option>Category3</option>
-					</select>
+					<label for="category">Category</label>
+					<form:select path="" styleClass="form-control" id="category">
+						<c:forEach items="${categoryList}" var="category">
+							<form:option>${category.name}</form:option>
+						</c:forEach>
+					</form:select>
 				</div>
 				<div class="form-group">
-					<label for="category">Supplier</label> <select class="form-control"
-						id="category">
-						<option>Supplier1</option>
-						<option>Supplier2</option>
-						<option>Supplier3</option>
-					</select>
+					<label for="supplier">Supplier</label>
+					<form:select path="" styleClass="selection form-control"
+						name="supplier">
+						<c:forEach items="${supplierList}" var="supplier">
+							<form:option value="">${supplier.name}</form:option>
+						</c:forEach>
+					</form:select>
 				</div>
 				<div class="form-group">
 					<label for="unit_price">Unit Price</label>
-					<form:input path="unitPrice" type="number" styleClass="form-control"
-						id="unit_price" placeholder="unit price" />
+					<form:input path="unitPrice" type="number"
+						styleClass="form-control" id="unit_price" placeholder="unit price" />
 				</div>
 				<div class="form-group">
 					<label for="quantity">Quantity</label>
@@ -58,16 +58,17 @@
 	<div class="container col-md-4">
 		<fieldset>
 			<legend>Add New Category</legend>
-			<form:form method="post" action="${contextPath}/admin/category/save" modelAttribute="category" styleClass="form-vertical">
+			<form:form method="post" action="${contextPath}/admin/category/save"
+				modelAttribute="category" styleClass="form-vertical">
 				<div class="form-group">
 					<label for="name">Category name</label>
-					<form:input path="name" type="text" styleClass="form-control" id="name"
-						placeholder="Name" />
+					<form:input path="name" type="text" styleClass="form-control"
+						id="name" placeholder="Name" />
 				</div>
 				<div class="form-group">
 					<label for="description">Description<label> <form:textarea
-								path="description" styleClass="form-control" rows="3" id="description"
-								placeholder="Description"></form:textarea>
+								path="description" styleClass="form-control" rows="3"
+								id="description" placeholder="Description"></form:textarea>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Add Category</button>
@@ -81,21 +82,22 @@
 	<div class="container col-md-4">
 		<fieldset>
 			<legend>Add New Supplier</legend>
-			<form:form method="post" action="${contextPath}/admin/product/save" modelAttribute="supplier" styleClass="form-vertical">
+			<form:form method="post" action="${contextPath}/admin/product/save"
+				modelAttribute="supplier" styleClass="form-vertical">
 				<div class="form-group">
 					<label for="name">Supplier name</label>
-					<form:input path="name" type="text" styleClass="form-control" id="name"
-						placeholder="Name" />
+					<form:input path="name" type="text" styleClass="form-control"
+						id="name" placeholder="Name" />
 				</div>
 				<div class="form-group">
 					<label for="email">Email ID</label>
-					<form:input path="email" type="email" styleClass="form-control" id="email"
-						placeholder="Email ID" />
+					<form:input path="email" type="email" styleClass="form-control"
+						id="email" placeholder="Email ID" />
 				</div>
 				<div class="form-group">
 					<label for="contact_no">Contact No</label>
-					<form:input path="contactNo" type="number" styleClass="form-control"
-						id="contact_no" placeholder="contact no" />
+					<form:input path="contactNo" type="number"
+						styleClass="form-control" id="contact_no" placeholder="contact no" />
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Add Supplier</button>
@@ -105,7 +107,7 @@
 	</div>
 	<!-- Supplier -->
 </div>
-
+<!--  -->
 <div class="container ">
 	<hr>
 	<h3>Products</h3>
@@ -119,6 +121,8 @@
 				<th>Description</th>
 				<th>UnitPrice</th>
 				<th>Quantity</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -133,14 +137,12 @@
 					<td>${product.quantity}</td>
 					<td><a href="#" class="btn btn-link" role="button">Edit</a></td>
 					<td><a href="#" class="btn btn-link" role="button">Delete</a></td>
-					<th></th>
-					<th></th>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
-<!-- Product -->
+ Product -->
 
 <div class="container ">
 	<hr>

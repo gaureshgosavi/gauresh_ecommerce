@@ -34,16 +34,30 @@ public class AdminController {
 	@Autowired
 	private Product product;
 	
-	@RequestMapping("/all")
-	public ModelAndView getAll(){
+	@RequestMapping("/viewProducts")
+	public ModelAndView getAllProducts(){
+		ModelAndView model= new ModelAndView("page");
+		model.addObject("product", product);
+		model.addObject("productList", productDAO.list());
+		model.addObject("ifUserClickedViewProducts",true);
+		return model;
+	}
+	
+	@RequestMapping("/viewCategories")
+	public ModelAndView getAllCategories(){
 		ModelAndView model= new ModelAndView("page");
 		model.addObject("category", category);
 		model.addObject("categoryList", categoryDAO.list());
-		model.addObject("product", product);
-		model.addObject("productList", productDAO.list());
+		model.addObject("ifUserClickedViewCategories",true);
+		return model;
+	}
+	
+	@RequestMapping("/viewSupplier")
+	public ModelAndView getAllSupplier(){
+		ModelAndView model= new ModelAndView("page");
 		model.addObject("supplier", supplier);
 		model.addObject("supplierList", supplierDAO.list());
-		model.addObject("ifUserClickedAdmin",true);
+		model.addObject("ifUserClickedViewSuppliers",true);
 		return model;
 	}
 	
