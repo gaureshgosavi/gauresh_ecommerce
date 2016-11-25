@@ -33,7 +33,7 @@
 		<%@include file="./admin/viewProducts.jsp"%>
 	</c:if>
 	
-	<c:if test="${ifUserClickedViewCategories == true }">
+	<c:if test="${ifUserClickedViewCategory == true }">
 		<%@include file="./admin/viewCategories.jsp"%>
 	</c:if>
 	

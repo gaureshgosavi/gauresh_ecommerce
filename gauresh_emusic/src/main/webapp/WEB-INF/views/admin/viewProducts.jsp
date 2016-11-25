@@ -12,11 +12,12 @@
 			<p>Here you can add new product...</p>
 			<fieldset>
 				<legend>Add New Product</legend>
-				<form:form method="post" action="${contextPath}/admin/product/save" modelAttribute="product" cssClass="form-vertical">
+				<form:form method="post" action="${contextPath}/admin/viewProducts/product/save" modelAttribute="product" cssClass="form-vertical" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="name">Product name</label>
 						<form:input type="text" cssClass="form-control" path="name"
 							id="name" placeholder="Name" />
+						<form:input type="hidden" path="productId" />
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
@@ -25,7 +26,7 @@
 					</div>
 					<div class="form-group">
 						<label for="category">Category</label>
-						<form:select path="${categoryId}" cssClass="form-control"
+						<form:select path="categoryId" cssClass="form-control"
 							id="category">
 							<c:forEach items="${categoryList}" var="category">
 								<form:option value="${category.id}">${category.name}</form:option>
@@ -34,7 +35,7 @@
 					</div>
 					<div class="form-group">
 						<label for="supplier">Supplier</label>
-						<form:select path="${supplierId}"
+						<form:select path="supplierId"
 							cssClass="selection form-control" name="supplier">
 							<c:forEach items="${supplierList}" var="supplier">
 								<form:option value="${supplier.id}">${supplier.name}</form:option>
@@ -54,17 +55,15 @@
 					</div>
 					<div class="form-group">
 						<label for="uploadfile">Upload File</label>
-						<form:input path="" type="file" id="file"
+						<form:input path="image" type="file" id="file"
 							cssClass="form-control" placeholder="Upload file" />
 					</div>
 					<div class="form-group">
 						<c:if test="${empty product.name}">
-							<a href="${contextPath}/admin/viewProducts/add"
-								class="btn btn-primary" role="button">Add New Product</a>
+							<button type="submit" class="btn btn-primary">Add New Product</button>
 						</c:if>
 						<c:if test="${!empty product.name}">
-							<a href="${contextPath}/admin/viewProducts/add"
-								class="btn btn-primary" role="button">Update Product</a>
+							<button type="submit" class="btn btn-primary" >Update Product</button>
 						</c:if>
 					</div>
 				</form:form>

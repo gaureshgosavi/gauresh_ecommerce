@@ -11,13 +11,14 @@
 		<div class="col-md-6 col-md-offset-3">
 			<fieldset>
 				<legend>Add New Supplier</legend>
-				<form:form method="post" action="${contextPath}/admin/product/save"
+				<form:form method="post" action="${contextPath}/admin/viewSuppliers/supplier/save"
 					modelAttribute="supplier" cssClass="form-vertical">
 					<div class="form-group">
 						<label for="name">Supplier name</label>
 						<form:input path="name" type="text" cssClass="form-control"
 							id="name" placeholder="Name" />
 					</div>
+					<form:input type="hidden" path="id" />
 					<div class="form-group">
 						<label for="email">Email ID</label>
 						<form:input path="email" type="email" cssClass="form-control"
@@ -31,11 +32,11 @@
 					</div>
 					<div class="form-group">
 						<c:if test="${empty supplier.name}">
-							<a href="${contextPath}/admin/viewSuppliers/add"
+							<a href="${contextPath}/admin/viewSuppliers/supplier/save"
 								class="btn btn-primary" role="button">Add New Supplier</a>
 						</c:if>
-						<c:if test="${empty supplier.name}">
-							<a href="${contextPath}/admin/viewSuppliers/update"
+						<c:if test="${!empty supplier.name}">
+							<a href="${contextPath}/admin/viewSuppliers/supplier/save"
 								class="btn btn-primary" role="button">Update Supplier</a>
 						</c:if>
 					</div>
@@ -63,9 +64,9 @@
 					<td>${supplier.name}</td>
 					<td>${supplier.email}</td>
 					<td>${supplier.contactNo}</td>
-					<td><a href="${contextPath}/admin/viewSuppliers/edit/${id}"
+					<td><a href="${contextPath}/admin/viewSuppliers/edit/${supplier.id}"
 						class="btn btn-link" role="button">Edit</a></td>
-					<td><a href="${contextPath}/admin/viewSuppliers/delete/${id}"
+					<td><a href="${contextPath}/admin/viewSuppliers/delete/${supplier.id}"
 						class="btn btn-link" role="button">Delete</a></td>
 				</tr>
 			</c:forEach>
