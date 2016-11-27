@@ -9,10 +9,28 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<p>Here you can add new product...</p>
+
 			<fieldset>
-				<legend>Add New Product</legend>
-				<form:form method="post" action="${contextPath}/admin/viewProducts/product/save" modelAttribute="product" cssClass="form-vertical" enctype="multipart/form-data">
+				<div>
+					<c:if test="${empty product.name}">
+						<legend>Add New Product</legend>
+					</c:if>
+					<c:if test="${!empty product.name}">
+						<legend>Update Product</legend>
+					</c:if>
+				</div>
+				<div>
+					<c:if test="${empty product.name}">
+						<p>Here you can add new product...</p>
+					</c:if>
+					<c:if test="${!empty product.name}">
+						<p>Here you can Update product...</p>
+					</c:if>
+				</div>
+				<form:form method="post"
+					action="${contextPath}/admin/viewProducts/product/save"
+					modelAttribute="product" cssClass="form-vertical"
+					enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="name">Product name</label>
 						<form:input type="text" cssClass="form-control" path="name"
@@ -21,8 +39,8 @@
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
-						<form:textarea path="description" cssClass="form-control"
-							rows="3" id="description" placeholder="Description"></form:textarea>
+						<form:textarea path="description" cssClass="form-control" rows="3"
+							id="description" placeholder="Description"></form:textarea>
 					</div>
 					<div class="form-group">
 						<label for="category">Category</label>
@@ -35,8 +53,8 @@
 					</div>
 					<div class="form-group">
 						<label for="supplier">Supplier</label>
-						<form:select path="supplierId"
-							cssClass="selection form-control" name="supplier">
+						<form:select path="supplierId" cssClass="selection form-control"
+							name="supplier">
 							<c:forEach items="${supplierList}" var="supplier">
 								<form:option value="${supplier.id}">${supplier.name}</form:option>
 							</c:forEach>
@@ -44,14 +62,13 @@
 					</div>
 					<div class="form-group">
 						<label for="unit_price">Unit Price</label>
-						<form:input path="unitPrice" type="number"
-							cssClass="form-control" id="unit_price"
-							placeholder="unit price" />
+						<form:input path="unitPrice" type="number" cssClass="form-control"
+							id="unit_price" placeholder="unit price" />
 					</div>
 					<div class="form-group">
 						<label for="quantity">Quantity</label>
-						<form:input path="quantity" type="number"
-							cssClass="form-control" id="quantity" placeholder="Quantity" />
+						<form:input path="quantity" type="number" cssClass="form-control"
+							id="quantity" placeholder="Quantity" />
 					</div>
 					<div class="form-group">
 						<label for="uploadfile">Upload File</label>
@@ -60,11 +77,16 @@
 					</div>
 					<div class="form-group">
 						<c:if test="${empty product.name}">
-							<button type="submit" class="btn btn-primary">Add New Product</button>
+							<button type="submit" class="btn btn-primary">Add New
+								Product</button>
 						</c:if>
 						<c:if test="${!empty product.name}">
-							<button type="submit" class="btn btn-primary" >Update Product</button>
+							<button type="submit" class="btn btn-primary">Update
+								Product</button>
 						</c:if>
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-circle-arrow-left"></span> Back
+						</button>
 					</div>
 				</form:form>
 			</fieldset>
@@ -79,9 +101,7 @@
 	<table class="table table-responsive">
 		<thead>
 			<tr>
-				<th>ProductID</th>
-				<th>CategoryID</th>
-				<th>SupplierID</th>
+				<th></th>
 				<th>Name</th>
 				<th>Description</th>
 				<th>UnitPrice</th>
@@ -93,19 +113,20 @@
 		<tbody>
 			<c:forEach items="${productList}" var="product">
 				<tr>
-					<td>${product.productId}</td>
-					<td>${product.categoryId}</td>
-					<td>${product.supplierId}</td>
+					<td><img src="" class="img-rounded" alt="No Image Available"
+						width="150" height="150"></td>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
 					<td>${product.unitPrice}</td>
 					<td>${product.quantity}</td>
 					<td><a
 						href="${contextPath}/admin/viewProducts/edit/${product.productId}"
-						class="btn btn-link" role="button">Edit</a></td>
+						class="btn btn-default" role="button"><span
+							class="glyphicon glyphicon-pencil"></span> Edit</a></td>
 					<td><a
 						href="${contextPath}/admin/viewProducts/delete/${product.productId}"
-						class="btn btn-link" role="button">Delete</a></td>
+						class="btn btn-default" role="button"><span
+							class="glyphicon glyphicon-trash"></span> Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -217,7 +217,7 @@ public class AdminController {
 				msg = "Successfully updated new supplier";
 			}
 			else {
-				msg = "Failed to update new supplier";
+				msg = "Failed to update supplier";
 			}
 		}
 		return "redirect:/admin/viewSuppliers?msg=" + msg;
@@ -232,7 +232,7 @@ public class AdminController {
 
 		model.addObject("supplierList", supplierDAO.list());
 
-		model.addObject("ifUserClickedViewSupplier", true);
+		model.addObject("ifUserClickedViewSuppliers", true);
 		return model;
 	}
 
@@ -242,7 +242,7 @@ public class AdminController {
 		ModelAndView model = new ModelAndView("page");
 		String msg;
 		supplier = supplierDAO.get(id);
-		boolean flag = productDAO.delete(product);
+		boolean flag =supplierDAO.delete(supplier);
 		if (flag == true)
 			msg = "Supplier deleted successfully";
 		else

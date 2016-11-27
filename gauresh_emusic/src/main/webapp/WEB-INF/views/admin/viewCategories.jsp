@@ -9,12 +9,27 @@
 	<div class="row">
 		<div class="container col-md-6 col-md-offset-3">
 			<fieldset>
-				<legend>Add New Category</legend>
-				<p>Here you can add new category...</p>
+				<div>
+					<c:if test="${empty product.name}">
+						<legend>Add New Category</legend>
+					</c:if>
+					<c:if test="${!empty product.name}">
+						<legend>Update Category</legend>
+					</c:if>
+				</div>
+				<div>
+					<c:if test="${empty product.name}">
+						<p>Here you can add new category...</p>
+					</c:if>
+					<c:if test="${!empty product.name}">
+						<p>Here you can update category...</p>
+					</c:if>
+				</div>
 				<br>
 				<form:form method="post"
 					action="${contextPath}/admin/viewCategories/category/save"
-					modelAttribute="category" cssClass="form-vertical" enctype="multipart/form-data">
+					modelAttribute="category" cssClass="form-vertical"
+					enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="name">Category name</label>
 						<form:input path="name" type="text" cssClass="form-control"
@@ -23,8 +38,8 @@
 					<form:input type="hidden" path="id" />
 					<div class="form-group">
 						<label for="description">Description</label>
-								<form:textarea path="description" cssClass="form-control"
-									rows="3" id="description" placeholder="Description"></form:textarea>
+						<form:textarea path="description" cssClass="form-control" rows="3"
+							id="description" placeholder="Description"></form:textarea>
 					</div>
 					<div class="form-group">
 						<label for="uploadfile">Upload File</label>
@@ -40,7 +55,9 @@
 							<button type="submit" class="btn btn-primary">Update
 								Category</button>
 						</c:if>
-
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-circle-arrow-left"></span> Back
+						</button>
 					</div>
 				</form:form>
 			</fieldset>
@@ -54,6 +71,7 @@
 	<table class="table table-responsive">
 		<thead>
 			<tr>
+				<th></th>
 				<th>Name</th>
 				<th>Description</th>
 				<th></th>
@@ -63,14 +81,18 @@
 		<tbody>
 			<c:forEach items="${categoryList}" var="category">
 				<tr>
+					<td><img src="" class="img-rounded" alt="No Image Available"
+						width="150" height="150"></td>
 					<td>${category.name}</td>
 					<td>${category.description}</td>
 					<td><a
 						href="${contextPath}/admin/viewCategories/edit/${category.id}"
-						class="btn btn-link" role="button">Edit</a></td>
+						class="btn btn-default" role="button"><span
+							class="glyphicon glyphicon-pencil"></span> Edit</a></td>
 					<td><a
 						href="${contextPath}/admin/viewCategories/delete/${category.id}"
-						class="btn btn-link" role="button">Delete</a></td>
+						class="btn btn-default" role="button"><span
+							class="glyphicon glyphicon-trash"></span> Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

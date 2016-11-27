@@ -46,93 +46,108 @@
 			<div class="item active">
 				<img class="First slide" alt="First slide" src="${images}/drums.jpg">
 			</div>
+			<div class="carousel-caption">
+				<h1>Bounce to the BOOM of the beat of the drum</h1>
+			</div>
 			<!-- item 1-->
 
 			<div class="item">
 				<img class="Second slide" alt="Second slide"
 					src="${images}/guitar.jpg">
 			</div>
+			<div class="carousel-caption">
+				<h1>Well i got this Guitar and I learned how to make it talk.</h1>
+			</div>
 			<!-- item 2-->
 
 			<div class="item">
 				<img class="Third slide" alt="Third slide"
 					src="${images}/keyboard.jpg">
-			</div>
-			<!-- item 3-->
+				<div class="carousel-caption">
+					<h1>You can't buy happiness but you can buy keyboard and that's
+						kind of same thing.</h1>
+				</div>
+				<!-- item 3-->
 
-			<div class="item">
-				<img class="Fourth slide" alt="Fourth slide" src="${images}/mic.jpg">
+				<div class="item">
+					<img class="Fourth slide" alt="Fourth slide"
+						src="${images}/mic.jpg">
+				</div>
+				<div class="carousel-caption">
+					<h1>One good thing about music, when it hits, you feel no
+						pain.</h1>
+				</div>
+				<!-- item 4-->
+
 			</div>
-			<!-- item 4-->
+			<!-- carousel-inner -->
+
+			<!-- controls -->
+			<a class="left carousel-control" href="#the-slider" role="button"
+				data-slide="prev"> <span
+				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#the-slider" role="button"
+				data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
 
 		</div>
-		<!-- carousel-inner -->
+		<!-- the slider -->
 
-		<!-- controls -->
-		<a class="left carousel-control" href="#the-slider" role="button"
-			data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
-			aria-hidden="true"></span> <span class="sr-only">Previous</span>
-		</a> <a class="right carousel-control" href="#the-slider" role="button"
-			data-slide="next"> <span
-			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
+		<div class="container">
+			<div class="jumbotron">
+				<h2>"Without music, life would be a mistake"</h2>
+				<h1>LET's GET MORE INTO MUSIC....</h1>
+			</div>
+		</div>
 
-	</div>
-	<!-- the slider -->
+		<!-- /.container -->
+		<hr>
+		<div class="container">
+			<h3>TOP SELLING PRODUCTS</h3>
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<img class="image-square" alt="image" src="${images}/ibanez.jpg"
+						width="170px" height="170px">
+					<h2>Ibanez ATK200 BK</h2>
+					<p>This is Guitar</p>
+					<a href="#">
+						<button class="btn btn-secondary">View Product</button>
+					</a>
+				</div>
 
-	<div class="container">
-		<div class="jumbotron">
-			<h2>"Without music, life would be a mistake"</h2>
-			<h1>LET's GET MORE INTO MUSIC....</h1>
+				<div class="col-md-3 col-sm-6">
+					<img class="image-square" alt="image" src="${images}/roland.jpg"
+						width="170px" height="170px">
+					<h2>Roland 76-note XP-80</h2>
+					<p>This is Keyboard</p>
+					<a href="#">
+						<button class="btn btn-secondary">View Product</button>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<img class="image-square" alt="image" src="${images}/flute.jpg"
+						width="170px" height="170px">
+					<h2>YFL-211</h2>
+					<p>This is Flute</p>
+					<a href="#">
+						<button class="btn btn-secondary">View Product</button>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<img class="image-square" alt="image" src="${images}/stagg.jpg"
+						width="170px" height="170px">
+					<h2>Stagg TIM622LBK 5-Piece Drum Set</h2>
+					<p>This is Drumkit</p>
+					<a href="#">
+						<button class="btn btn-secondary">View Product</button>
+					</a>
+				</div>
+
+			</div>
 		</div>
 	</div>
-
-	<!-- /.container -->
-	<hr>
-	<div class="container">
-		<h3>TOP SELLING PRODUCTS</h3>
-		<div class="row">
-			<div class="col-md-3 col-sm-6">
-				<img class="image-square" alt="image" src="${images}/ibanez.jpg"
-					width="170px" height="170px">
-				<h2>Ibanez ATK200 BK</h2>
-				<p>This is Guitar</p>
-				<a href="#">
-					<button class="btn btn-secondary">View Product</button>
-				</a>
-			</div>
-
-			<div class="col-md-3 col-sm-6">
-				<img class="image-square" alt="image" src="${images}/roland.jpg"
-					width="170px" height="170px">
-				<h2>Roland 76-note XP-80</h2>
-				<p>This is Keyboard</p>
-				<a href="#">
-					<button class="btn btn-secondary">View Product</button>
-				</a>
-			</div>
-
-			<div class="col-md-3 col-sm-6">
-				<img class="image-square" alt="image" src="${images}/flute.jpg"
-					width="170px" height="170px">
-				<h2>YFL-211</h2>
-				<p>This is Flute</p>
-				<a href="#">
-					<button class="btn btn-secondary">View Product</button>
-				</a>
-			</div>
-
-			<div class="col-md-3 col-sm-6">
-				<img class="image-square" alt="image" src="${images}/stagg.jpg"
-					width="170px" height="170px">
-				<h2>Stagg TIM622LBK 5-Piece Drum Set</h2>
-				<p>This is Drumkit</p>
-				<a href="#">
-					<button class="btn btn-secondary">View Product</button>
-				</a>
-			</div>
-
-		</div>
-	</div>
-</div>
