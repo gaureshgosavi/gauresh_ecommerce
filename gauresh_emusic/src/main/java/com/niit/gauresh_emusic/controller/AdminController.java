@@ -1,5 +1,10 @@
 package com.niit.gauresh_emusic.controller;
 
+import java.io.File;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +21,8 @@ import com.niit.gauresh_backend.model.Category;
 import com.niit.gauresh_backend.model.Product;
 import com.niit.gauresh_backend.model.Supplier;
 import com.niit.gauresh_emusic.util.FileUtil;
+
+;
 
 @Controller
 @RequestMapping("/admin")
@@ -39,18 +46,28 @@ public class AdminController {
 	@Autowired
 	private Product product;
 
-	private String path = "E:\\NIIT\\Projects\\gauresh_ecommerce\\products\\";
+	private static String productPath = "";
+	private static String categoryPath = "";
 
 	// product list
 	@RequestMapping("/viewProducts")
 	public ModelAndView getAllProducts(@RequestParam(value = "msg", required = false) String msg) {
 		ModelAndView model = new ModelAndView("page");
 		model.addObject("product", new Product());
-		model.addObject("productList", productDAO.list());
 
-		model.addObject("categoryList", categoryDAO.list());
-		model.addObject("supplierList", supplierDAO.list());
+		// checking for list to display
+		List<Product> productList = productDAO.list();
+		if (productList != null && !productList.isEmpty()) {
+			model.addObject("productList", productDAO.list());
+			model.addObject("categoryList", categoryDAO.list());
+			model.addObject("supplierList", supplierDAO.list());
+		}
 
+		else {
+			model.addObject("noProduct", "Oops!!! No product present.");
+		}
+
+		// checking for success/failure msg
 		if (msg != null)
 			model.addObject("msg", msg);
 		model.addObject("ifUserClickedViewProducts", true);
@@ -59,28 +76,30 @@ public class AdminController {
 
 	// add or update product
 	@RequestMapping(value = "/viewProducts/product/save", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") Product product) {
+	public String addProduct(@ModelAttribute("product") Product product, HttpServletRequest request) {
+
+		// finding real path
+		String rootPath = request.getSession().getServletContext().getRealPath("/");
+		// giving proper path for category images
+		productPath = rootPath + "resources\\images\\product";
 
 		String msg = null;
 		System.out.println(product);
 		if (product.getProductId() == 0) {
-			boolean flag=productDAO.saveOrUpdate(product);
+			boolean flag = productDAO.saveOrUpdate(product);
 			if (flag == true) {
-				//FileUtil.upload(path, product.getImage(), product.getProductId() + ".png");
+				FileUtil.upload(productPath, product.getImage(), product.getProductId() + ".png");
 				msg = "Successfully added new product";
-			}
-			else {
+			} else {
 				msg = "Failed to create new product";
 			}
-		}
-		else {
-			boolean flag=productDAO.saveOrUpdate(product);
+		} else {
+			boolean flag = productDAO.saveOrUpdate(product);
 			if (flag == true) {
-				FileUtil.upload(path, product.getImage(), product.getProductId() + ".png");
-				msg = "Successfully updated new product";
-			}
-			else {
-				msg = "Failed to update new product";
+				FileUtil.upload(productPath, product.getImage(), product.getProductId() + ".png");
+				msg = "Successfully updated product";
+			} else {
+				msg = "Failed to update product";
 			}
 		}
 
@@ -122,7 +141,15 @@ public class AdminController {
 	public ModelAndView getAllCategories(@RequestParam(value = "msg", required = false) String msg) {
 		ModelAndView model = new ModelAndView("page");
 		model.addObject("category", new Category());
-		model.addObject("categoryList", categoryDAO.list());
+
+		List<Category> categoryList = categoryDAO.list();
+		if (categoryList != null && !categoryList.isEmpty()) {
+			model.addObject("categoryList", categoryDAO.list());
+		} else {
+			model.addObject("noCategory", "Oops!!! No category present.");
+		}
+
+		// showing success or failure msg
 		if (msg != null)
 			model.addObject("msg", msg);
 		model.addObject("ifUserClickedViewCategory", true);
@@ -130,31 +157,34 @@ public class AdminController {
 	}
 
 	// add/update category
-	@RequestMapping(value="/viewCategories/category/save", method = RequestMethod.POST)
-	public String addCategory(@ModelAttribute("category") Category category) {
-		String msg= null;
+	@RequestMapping(value = "/viewCategories/category/save", method = RequestMethod.POST)
+	public String addCategory(@ModelAttribute("category") Category category, HttpServletRequest request) {
+
+		// finding real path
+		String rootPath = request.getSession().getServletContext().getRealPath("/");
+		// giving path for category images
+		categoryPath = rootPath + "resources\\images\\category";
+
+		String msg = null;
 		System.out.println(category);
 		if (category.getId() == 0) {
-			boolean flag=categoryDAO.saveOrUpdate(category);
+			boolean flag = categoryDAO.saveOrUpdate(category);
 			if (flag == true) {
-				FileUtil.upload(path, category.getImage(), category.getId() + ".png");
+				FileUtil.upload(categoryPath, category.getImage(), category.getId() + ".png");
 				msg = "Successfully added new category";
-			}
-			else {
+			} else {
 				msg = "Failed to create new category";
 			}
-		}
-		else {
-			boolean flag=categoryDAO.saveOrUpdate(category);
+		} else {
+			boolean flag = categoryDAO.saveOrUpdate(category);
 			if (flag == true) {
-				//FileUtil.upload(path, category.getImage(), category.getId() + ".png");
-				msg = "Successfully updated new category";
-			}
-			else {
-				msg = "Failed to update new category";
+				FileUtil.upload(categoryPath, category.getImage(), category.getId() + ".png");
+				msg = "Successfully updated category";
+			} else {
+				msg = "Failed to update category";
 			}
 		}
-		return "redirect:/admin/viewCategories?msg="+ msg;
+		return "redirect:/admin/viewCategories?msg=" + msg;
 	}
 
 	// edit category
@@ -190,7 +220,16 @@ public class AdminController {
 	public ModelAndView getAllSupplier(@RequestParam(value = "msg", required = false) String msg) {
 		ModelAndView model = new ModelAndView("page");
 		model.addObject("supplier", new Supplier());
-		model.addObject("supplierList", supplierDAO.list());
+
+		// checking supplier list
+		List<Supplier> supplierList = supplierDAO.list();
+		if (supplierList != null && !supplierList.isEmpty()) {
+			model.addObject("supplierList", supplierDAO.list());
+		} else {
+			model.addObject("noSupplier", "Oops!!! No supplier present.");
+		}
+
+		// looking for any success failure msg
 		if (msg != null)
 			model.addObject("msg", msg);
 		model.addObject("ifUserClickedViewSuppliers", true);
@@ -200,23 +239,20 @@ public class AdminController {
 	// add/update supplier
 	@RequestMapping(value = "/viewSuppliers/supplier/save", method = RequestMethod.POST)
 	public String addsupplier(@ModelAttribute("supplier") Supplier supplier) {
-		String msg=null;
+		String msg = null;
 		System.out.println(supplier);
 		if (supplier.getId() == 0) {
-			boolean flag=supplierDAO.saveOrUpdate(supplier);
+			boolean flag = supplierDAO.saveOrUpdate(supplier);
 			if (flag == true) {
 				msg = "Successfully added new supplier";
-			}
-			else {
+			} else {
 				msg = "Failed to create new supplier";
 			}
-		}
-		else {
-			boolean flag=supplierDAO.saveOrUpdate(supplier);
+		} else {
+			boolean flag = supplierDAO.saveOrUpdate(supplier);
 			if (flag == true) {
-				msg = "Successfully updated new supplier";
-			}
-			else {
+				msg = "Successfully updated supplier";
+			} else {
 				msg = "Failed to update supplier";
 			}
 		}
@@ -242,7 +278,7 @@ public class AdminController {
 		ModelAndView model = new ModelAndView("page");
 		String msg;
 		supplier = supplierDAO.get(id);
-		boolean flag =supplierDAO.delete(supplier);
+		boolean flag = supplierDAO.delete(supplier);
 		if (flag == true)
 			msg = "Supplier deleted successfully";
 		else

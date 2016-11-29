@@ -53,6 +53,10 @@
 		<%@include file="productDetail.jsp"%>
 	</c:if>
 	
+	<c:if test="${ifAnyError == true }">
+		<%@include file="error.jsp"%>
+	</c:if>
+	
 	<%@include file="./shared/footer.jsp"%>
 
 	<script src="${js}/jquery.js"></script>

@@ -26,40 +26,48 @@
 					</c:if>
 				</div>
 				<br>
-				<form:form method="post"
-					action="${contextPath}/admin/viewCategories/category/save"
-					modelAttribute="category" cssClass="form-vertical"
-					enctype="multipart/form-data">
-					<div class="form-group">
-						<label for="name">Category name</label>
-						<form:input path="name" type="text" cssClass="form-control"
-							id="name" placeholder="Name" />
-					</div>
-					<form:input type="hidden" path="id" />
-					<div class="form-group">
-						<label for="description">Description</label>
-						<form:textarea path="description" cssClass="form-control" rows="3"
-							id="description" placeholder="Description"></form:textarea>
-					</div>
-					<div class="form-group">
-						<label for="uploadfile">Upload File</label>
-						<form:input path="image" type="file" id="file"
-							cssClass="form-control" placeholder="Upload file" />
-					</div>
-					<div class="form-group">
-						<c:if test="${empty category.name}">
-							<button type="submit" class="btn btn-primary">Add New
-								Category</button>
-						</c:if>
-						<c:if test="${!empty category.name}">
-							<button type="submit" class="btn btn-primary">Update
-								Category</button>
-						</c:if>
-						<button type="submit" class="btn btn-primary">
-							<span class="glyphicon glyphicon-circle-arrow-left"></span> Back
-						</button>
-					</div>
-				</form:form>
+				<c:choose>
+					<c:when test="${!empty noCategory}">
+						<h2>${noCategory}</h2>
+					</c:when>
+					<c:otherwise>
+						<form:form method="post"
+							action="${contextPath}/admin/viewCategories/category/save"
+							modelAttribute="category" cssClass="form-vertical"
+							enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="name">Category name</label>
+								<form:input path="name" type="text" cssClass="form-control"
+									id="name" placeholder="Name" required="true" />
+							</div>
+							<form:input type="hidden" path="id" />
+							<div class="form-group">
+								<label for="description">Description</label>
+								<form:textarea path="description" cssClass="form-control"
+									rows="3" id="description" placeholder="Description"></form:textarea>
+							</div>
+							<div class="form-group">
+								<label for="uploadfile">Upload File</label>
+								<form:input path="image" type="file" id="file"
+									cssClass="form-control" placeholder="Upload file" />
+							</div>
+							<div class="form-group">
+								<c:if test="${empty category.name}">
+									<button type="submit" class="btn btn-primary">Add New
+										Category</button>
+								</c:if>
+								<c:if test="${!empty category.name}">
+									<button type="submit" class="btn btn-primary">Update
+										Category</button>
+								</c:if>
+								<button type="submit" class="btn btn-primary">
+									<span class="glyphicon glyphicon-circle-arrow-left"></span>
+									Back
+								</button>
+							</div>
+						</form:form>
+					</c:otherwise>
+				</c:choose>
 			</fieldset>
 		</div>
 	</div>
@@ -81,7 +89,7 @@
 		<tbody>
 			<c:forEach items="${categoryList}" var="category">
 				<tr>
-					<td><img src="" class="img-rounded" alt="No Image Available"
+					<td><img src="${images}/category/${category.id}.png" class="img-rounded" alt="No Image Available"
 						width="150" height="150"></td>
 					<td>${category.name}</td>
 					<td>${category.description}</td>
