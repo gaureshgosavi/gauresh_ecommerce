@@ -67,21 +67,29 @@
 								</div>
 							</form>
 						</li>
+						<sec:authorize access="hasRole('ADMIN')">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button" aria-haspopup="true"
+								aria-expanded="false"><span
+									class="glyphicon glyphicon-hand-down"></span> Admin</a>
+								<ul class="dropdown-menu">
+									<li><a href="${contextPath}/admin/viewProducts">View
+											Products</a></li>
+									<li><a href="${contextPath}/admin/viewCategories">View
+											Categories</a></li>
+									<li><a href="${contextPath}/admin/viewSuppliers">View
+											Suppliers</a></li>
+								</ul></li>
+						</sec:authorize>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false"><span
-								class="glyphicon glyphicon-hand-down"></span> Admin</a>
+							aria-expanded="false"> <span class="glyphicon glyphicon-cog"></span>
+								Settings
+						</a>
 							<ul class="dropdown-menu">
-								<li><a href="${contextPath}/admin/viewProducts">View
-										Products</a></li>
-								<li><a href="${contextPath}/admin/viewCategories">View
-										Categories</a></li>
-								<li><a href="${contextPath}/admin/viewSuppliers">View
-										Suppliers</a></li>
+								<li><a href="${contextPath}/login">LogIn</a></li>
+								<li><a href="${contextPath}/register">SignUp</a></li>
 							</ul></li>
-						<li><a href="${contextPath}/login"> <span
-								class="glyphicon glyphicon-cog"></span> Settings
-						</a></li>
 					</ul>
 				</div>
 			</div>

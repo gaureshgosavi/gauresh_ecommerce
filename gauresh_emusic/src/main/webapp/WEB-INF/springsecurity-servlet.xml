@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/admin/**"
+			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/user/**"
+			access="hasRole('USER')" />
+		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:form-login login-page="/login"
+			username-parameter="username" login-processing-url="/login" password-parameter="password"
+			authentication-failure-url="/login?error"  default-target-url="/index" />
+		<security:logout logout-success-url="/index?message" />
+		<security:access-denied-handler error-page="/403" />
+		<security:csrf disabled="true"/>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="dataSource" users-by-username-query="select username, password, enabled from user where username= ?"
+				authorities-by-username-query="select username, role from user where username = ?"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

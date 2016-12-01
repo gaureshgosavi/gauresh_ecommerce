@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <spring:url value="/resources/images" var="images" />
 <spring:url value="/resources/css" var="css" />
@@ -55,6 +56,14 @@
 	
 	<c:if test="${ifAnyError == true }">
 		<%@include file="error.jsp"%>
+	</c:if>
+	
+	<c:if test="${ifLoginIsClicked == true }">
+		<%@include file="login.jsp"%>
+	</c:if>
+	
+	<c:if test="${ifRegisterIsClicked == true }">
+		<%@include file="register.jsp"%>
 	</c:if>
 	
 	<%@include file="./shared/footer.jsp"%>
