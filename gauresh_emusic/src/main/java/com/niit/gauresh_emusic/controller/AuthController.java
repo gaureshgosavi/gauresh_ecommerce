@@ -75,9 +75,13 @@ public class AuthController {
 	}
 
 	@RequestMapping(value = "/register")
-	public ModelAndView about() {
+	public ModelAndView register(@RequestParam(value="ae") String ae) {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("user", new User());
+		
+		if(ae != null)
+			mv.addObject("error", "user with this user name already exist");
+		
 		mv.addObject("ifRegisterIsClicked", true);
 		mv.addObject("title", "register");
 		return mv;
@@ -85,20 +89,19 @@ public class AuthController {
 
 	// when user clicks on register
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView registerUser(@ModelAttribute User user) {
+	public String registerUser(@ModelAttribute("user") User user) {
 
-		ModelAndView mv = new ModelAndView("/page");
-		if (userDAO.get(user.getUsername()) == null) {
+		
+		if (userDAO.getByUsername(user.getUsername()) == null) {
 
 			user.setRole("USER");
 			userDAO.saveOrUpdate(user);
 
 		} else {
-
-			mv.addObject("errorMessage", "User already exist with this username.");
+			return "redirect:/register?ae";
 
 		}
-		return mv;
+		return "redirect:/login";
 
 	}
 

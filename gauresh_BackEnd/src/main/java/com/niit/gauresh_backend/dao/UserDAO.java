@@ -8,10 +8,8 @@ public interface UserDAO {
 
 	public Boolean delete(int userId);
 	
-	public User get(String username);
+	public User getByUsername(String username);
 	
 	public User getById(int userId);
 	
-	public boolean isValidUser(User user);
-
 }

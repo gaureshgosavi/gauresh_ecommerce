@@ -1,5 +1,7 @@
 package com.niit.gauresh_backend.daoimpl;
 
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.gauresh_backend.dao.UserDAO;
-import com.niit.gauresh_backend.model.Product;
 import com.niit.gauresh_backend.model.User;
 
 @Repository("userDAO")
@@ -44,8 +45,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@Transactional
-	public User get(String username) {
-		return (User) sessionFactory.getCurrentSession().get(User.class, username);
+	public User getByUsername(String username) {
+		
+		String hql="from User where Id=" + "'" + username + "'";
+		Query query =(Query) sessionFactory.getCurrentSession().createQuery(hql);
+		return (User) query.getSingleResult();
 	}
 
 	@Override
@@ -54,10 +58,4 @@ public class UserDAOImpl implements UserDAO {
 		return (User) sessionFactory.getCurrentSession().get(User.class, userId);
 	}
 
-	@Override
-	@Transactional
-	public boolean isValidUser(User user) {
-		
-		return true;
-	}
 }

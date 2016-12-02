@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-sm-6 col-sm-offset-3">
-									<button type="submit" class="form-control btn btn-success"
+									<button type="submit" class="form-control btn btn-primary"
 										id="login-submit" name="submit">Login</button>
 								</div>
 							</div>

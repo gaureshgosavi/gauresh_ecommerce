@@ -32,7 +32,7 @@
 							<div class="row">
 								<div class="col-sm-6 col-sm-offset-3">
 									<button type="submit" name="submit" id="register-submit"
-										class="form-control btn btn-primary">Register</button>
+										class="form-control btn btn-success">Register</button>
 								</div>
 							</div>
 						</div>

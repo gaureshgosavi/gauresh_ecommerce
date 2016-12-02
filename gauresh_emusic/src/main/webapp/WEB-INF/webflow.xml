@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow  http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+
+	<var name="shippingAddress" class="com.niit.gauresh_BackEnd.model.ShippingAddress" />
+	<var name="billingAddress" class="com.niit.gauresh_BackEnd.model.BillingAddress" />
+	<var name="order" class="com.niit.gauresh_BackEnd.model.OrderDetails" />
+	<var name="cart" class="com.niit.gauresh_BackEnd.model.Cart" />
+	<var name="paymentMethod" class="com.niit.gauresh_BackEnd.model.PaymentMethod" />
+
+	<on-start>
+		<evaluate expression="orderWebFlow.initFlow()" result="flowScope.order" />
+	</on-start>
+
+	<view-state id="checkout" view="user/shippingAddress" model="shippingAddress">
+		<transition on="submitShippingAddress" to="shippingDetails" />
+	</view-state>
+
+	<action-state id="shippingDetails">
+		<evaluate
+			expression="orderWebFlow.addShippingAddress(flowScope.order,shippingAddress)"></evaluate>
+		<transition on="success" to="viewBillingDetails" />
+	</action-state>
+
+	<view-state id="viewBillingDetails" view="user/billingAddress"
+		model="billingAddress">
+		<transition on="submitBillingAddress" to="billingDetails" />
+	</view-state>
+
+	<action-state id="billingDetails">
+		<evaluate
+			expression="orderWebFlow.addBillingAddress(flowScope.order,billingAddress)"></evaluate>
+		<transition on="success" to="paymentMethod" />
+	</action-state>
+
+	<view-state id="viewPaymentMethod" view="cart/paymentMethod"
+		model="paymentMethod">
+		<transition on="confirmCheckout" to="paymentMethod" />
+	</view-state>
+
+	<action-state id="paymentMethod">
+		<evaluate
+			expression="orderWebFlow.addPaymentMethod(flowScope.order,paymentMethod)"></evaluate>
+		<transition on="success" to="orderConfirm" />
+	</action-state>
+
+
+	<view-state id="orderConfirm" view="cart/orderConfirmed">
+		<transition on="finalHome" to="toHome" />
+	</view-state>
+
+	<end-state id="toHome" view="externalRedirect:contextRelative:/index" />
+
+	<global-transitions>
+		<transition on="cancel" to="toCartView" />
+	</global-transitions>
+
+</flow>	

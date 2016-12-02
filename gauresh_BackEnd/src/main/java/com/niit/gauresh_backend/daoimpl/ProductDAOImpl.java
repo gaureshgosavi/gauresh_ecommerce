@@ -66,6 +66,13 @@ public class ProductDAOImpl implements ProductDAO{
 		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 
+	@Override
+	@Transactional
+	public List<Product> getSimilarProducts(String searchText) {
+		String hql= "from Product where name like %"+ searchText+"%";
+		return sessionFactory.getCurrentSession().createQuery(hql).list();
+	}
+
 }
 
 
