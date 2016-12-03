@@ -81,15 +81,28 @@
 											Suppliers</a></li>
 								</ul></li>
 						</sec:authorize>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false"> <span class="glyphicon glyphicon-cog"></span>
-								Settings
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="${contextPath}/login">LogIn</a></li>
-								<li><a href="${contextPath}/register">SignUp</a></li>
-							</ul></li>
+						<sec:authorize access="hasRole('ROLE_USER')">
+
+							<li id="viewCart"><a id="A_viewCart"
+								href="${contextPath}/user/cart/"><span
+									class="fa fa-cart-plus"></span> My Cart</a></li>
+
+						</sec:authorize>
+						<sec:authorize access="isAnonymous()">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button" aria-haspopup="true"
+								aria-expanded="false"> <span class="glyphicon glyphicon-cog"></span>
+									Settings
+							</a>
+
+								<ul class="dropdown-menu">
+									<li><a href="${contextPath}/login">LogIn</a></li>
+									<li><a href="${contextPath}/register">SignUp</a></li>
+								</ul></li>
+						</sec:authorize>
+						<security:authorize access="isAuthenticated()">
+							<li><a href="${contextPath}/logout">Log out</a></li>
+						</security:authorize>
 					</ul>
 				</div>
 			</div>

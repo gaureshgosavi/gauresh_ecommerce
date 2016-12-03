@@ -1,5 +1,7 @@
 package com.niit.gauresh_backend.daoimpl;
 
+
+
 import javax.persistence.Query;
 
 import org.hibernate.HibernateException;
@@ -47,7 +49,7 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public User getByUsername(String username) {
 		
-		String hql="from User where Id=" + "'" + username + "'";
+		String hql="from User where username='" + username + "'";
 		Query query =(Query) sessionFactory.getCurrentSession().createQuery(hql);
 		return (User) query.getSingleResult();
 	}

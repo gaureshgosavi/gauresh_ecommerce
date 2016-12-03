@@ -16,7 +16,7 @@
 
 					<div class="tab-content">
 						<div id="home" class="tab-pane fade in active">
-							<input type="submit" name="confirmOrder" class="btn btn-success"
+							<input type="submit" name="_eventId_submitPaymentDetails" class="btn btn-success"
 								value="Confirm Order">
 						</div>
 						<div id="menu1" class="tab-pane fade">
@@ -28,8 +28,8 @@
 									aperiam.</p>
 							</div>
 							<div id="menu3" class="tab-pane fade">
-								<input type="submit" name="confirmOrder" class="btn btn-success"
-									value="Confirm Order">
+								<input type="submit" name="_eventId_submitPaymentDetails" class="btn btn-success"
+									value="submitPaymentDetails">
 							</div>
 						</div>
 					</div>

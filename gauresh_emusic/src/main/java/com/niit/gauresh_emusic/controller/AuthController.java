@@ -75,7 +75,7 @@ public class AuthController {
 	}
 
 	@RequestMapping(value = "/register")
-	public ModelAndView register(@RequestParam(value="ae") String ae) {
+	public ModelAndView register(@RequestParam(value="ae", required = false) String ae) {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("user", new User());
 		
@@ -98,7 +98,8 @@ public class AuthController {
 			userDAO.saveOrUpdate(user);
 
 		} else {
-			return "redirect:/register?ae";
+			String ae="user exist";
+			return "redirect:/register?ae"+ae;
 
 		}
 		return "redirect:/login";

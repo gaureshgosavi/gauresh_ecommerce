@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.gauresh_backend.dao.ProductDAO;
 import com.niit.gauresh_backend.model.Product;
-import com.niit.gauresh_backend.model.Product;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO{

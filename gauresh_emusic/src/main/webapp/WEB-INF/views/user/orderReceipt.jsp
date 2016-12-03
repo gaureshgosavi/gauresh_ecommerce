@@ -71,6 +71,8 @@
 			</table>
 		</div>
 	</div>
-	<h2 align="center">THANK YOU!!!</h2>
-	<p align="center">Visit Again!!!</p>
+	<h2 align="center">THANK YOU!!!</h2><br>
+	<p align="center">Visit Again!!!</p><br>
+	<input type="submit" name="_eventId_submitConfirmCheckout" class="pull-right"
+				class="btn btn-md btn-success" value="Place Order">
 </div>

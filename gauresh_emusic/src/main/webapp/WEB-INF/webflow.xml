@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/webflow  http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+	http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
 	<var name="shippingAddress" class="com.niit.gauresh_BackEnd.model.ShippingAddress" />
 	<var name="billingAddress" class="com.niit.gauresh_BackEnd.model.BillingAddress" />
@@ -9,11 +10,14 @@
 	<var name="cart" class="com.niit.gauresh_BackEnd.model.Cart" />
 	<var name="paymentMethod" class="com.niit.gauresh_BackEnd.model.PaymentMethod" />
 
+
+	<!-- Executed when webFlow is triggered -->
 	<on-start>
+	<!-- orderWebFlow is java class available through annotated Demohandler.java class.here we are calling it’s initFlow() method. -->
 		<evaluate expression="orderWebFlow.initFlow()" result="flowScope.order" />
 	</on-start>
 
-	<view-state id="checkout" view="user/shippingAddress" model="shippingAddress">
+	<view-state id="cart_checkout" view="user/shippingAddress" model="shippingAddress">
 		<transition on="submitShippingAddress" to="shippingDetails" />
 	</view-state>
 
@@ -31,22 +35,32 @@
 	<action-state id="billingDetails">
 		<evaluate
 			expression="orderWebFlow.addBillingAddress(flowScope.order,billingAddress)"></evaluate>
-		<transition on="success" to="paymentMethod" />
+		<transition on="success" to="viewPaymentDetails" />
 	</action-state>
 
-	<view-state id="viewPaymentMethod" view="cart/paymentMethod"
-		model="paymentMethod">
-		<transition on="confirmCheckout" to="paymentMethod" />
+	<view-state id="viewPaymentDetails" view="cart/paymentDetails"
+		model="paymentDetails">
+		<transition on="submitPaymentDetails" to="paymentDetails" />
 	</view-state>
 
-	<action-state id="paymentMethod">
+	<action-state id="paymentDetails">
 		<evaluate
-			expression="orderWebFlow.addPaymentMethod(flowScope.order,paymentMethod)"></evaluate>
-		<transition on="success" to="orderConfirm" />
+			expression="orderWebFlow.addPaymentMethod(flowScope.order,paymentDetails)"></evaluate>
+		<transition on="success" to="viewOrderReciept" />
+	</action-state>
+	
+	<view-state id="viewOrderReciept" view="cart/orderReciept"
+		model="orderReciept">
+		<transition on="submitConfirmCheckout" to="orderReciept" />
+	</view-state>
+
+	<action-state id="orderReciept">
+		<evaluate
+			expression="orderWebFlow.addPaymentMethod(flowScope.order,orderReciept)"></evaluate>
+		<transition on="success" to="viewOrderConfirm" />
 	</action-state>
 
-
-	<view-state id="orderConfirm" view="cart/orderConfirmed">
+	<view-state id="viewOrderConfirm" view="cart/orderConfirmed">
 		<transition on="finalHome" to="toHome" />
 	</view-state>
 

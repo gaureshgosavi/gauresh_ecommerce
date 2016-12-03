@@ -36,6 +36,7 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.8.4</version>
 		</dependency>
+		<!-- Backend -->
 		<dependency>
 			<groupId>com.niit</groupId>
 			<artifactId>gauresh_BackEnd</artifactId>
@@ -76,6 +77,12 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.2.0.RELEASE</version>
+		</dependency>
+		<!-- spring-webflow -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.4.4.RELEASE</version>
 		</dependency>
 
 	</dependencies>
