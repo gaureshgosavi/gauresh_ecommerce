@@ -36,29 +36,32 @@
 							<form:input path="state" type="text" cssClass="form-control"
 								placeholder="State" required="true" />
 						</div>
-				</div>
-				<div class="form-group">
-					<label for="country">Country</label>
 
-					<form:input path="country" type="text" cssClass="form-control"
-						placeholder="Country" required="true" />
+						<div class="form-group">
+							<label for="country">Country</label>
+
+							<form:input path="country" type="text" cssClass="form-control"
+								placeholder="Country" required="true" />
+						</div>
+
+						<div class="form-group">
+							<label for="zipCode">Zip code</label>
+
+							<form:input path="zipCode" type="text" cssClass="form-control"
+								placeholder="Zip code" required="true" />
+						</div>
+
+						<div class="col-md-offset-3">
+							<input type="submit" name="_eventId_submitBillingAddress"
+								class="btn btn-md btn-success" value="Save">
+							<form:form>
+								<input type="submit" name="_eventId_cancel"
+									class="btn btn-md btn-danger" value="Cancel">
+							</form:form>
+						</div>
+					</form:form>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="zipCode">Zip code</label>
-
-				<form:input path="zipCode" type="text" cssClass="form-control"
-					placeholder="Zip code" required="true" />
-			</div>
 		</div>
-		<div class="col-md-offset-3">
-			<input type="submit" name="_eventId_submitBillingAddress"
-				class="btn btn-md btn-success" value="Save">
-			<form:form>
-				<input type="submit" name="_eventId_cancel"
-					class="btn btn-md btn-danger" value="Cancel">
-			</form:form>
-		</div>
-		</form:form>
 	</div>
 </div>

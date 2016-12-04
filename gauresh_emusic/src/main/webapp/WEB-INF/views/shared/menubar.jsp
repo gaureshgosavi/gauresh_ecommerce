@@ -58,7 +58,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<form action="" class="search-form">
+							<form action="${contextPath}/search" class="search-form">
 								<div class="form-group has-feedback">
 									<label for="search" class="sr-only">Search</label> <input
 										type="text" class="form-control" name="search" id="search"

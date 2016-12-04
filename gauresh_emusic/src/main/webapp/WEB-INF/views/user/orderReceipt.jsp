@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6">
-			<img class="image-circle" alt="logo" src="" width="" height="">
+			<img class="image-circle" alt="logo" src="${images}/logo.jpg" width="170" height="170">
 		</div>
 		<div class="col-md-6">
 			<h3>Emu$ic</h3>
@@ -11,14 +11,14 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-			<p>
+			<p align="center">
 				<mark>
 					<b>Email:</b>
 				</mark>
 			</p>
 		</div>
 		<div class="col-md-6">
-			<p>
+			<p align="center">
 				<mark>
 					<b>Contact No:</b>
 				</mark>
@@ -31,17 +31,16 @@
 			<br>
 			<p>
 				<b>Name:</b> <br> <b>Email:</b> <br> <b>Contact No:</b> <br>
+				<b>Billing Address:</b>
 			</p>
 		</div>
 		<div class="col-md-6">
 			<h3>Payment Information</h3>
 			<br>
 			<p>
-				<b>Total Amount:</b> <br>
-			<p>
-				<b>Payment Status:</b> <br>
-			<p>
-				<b>Payment Method:</b> <br>
+				<b>Total Amount:</b> <br> <b>Payment Status:</b> <br> <b>Payment
+					Method:</b> <br> <b>Shipping Address:</b>
+			</p>
 		</div>
 	</div>
 	<div class="row">
@@ -71,8 +70,10 @@
 			</table>
 		</div>
 	</div>
-	<h2 align="center">THANK YOU!!!</h2><br>
-	<p align="center">Visit Again!!!</p><br>
-	<input type="submit" name="_eventId_submitConfirmCheckout" class="pull-right"
-				class="btn btn-md btn-success" value="Place Order">
+	<div class="row">
+		<input type="submit" name="_eventId_cancel"
+			class="btn btn-md btn-danger" value="Cancel"> <input
+			type="submit" name="_eventId_submitConfirmCheckout"
+			class="pull-right" class="btn btn-md btn-success" value="Place Order">
+	</div>
 </div>

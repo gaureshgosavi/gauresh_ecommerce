@@ -10,6 +10,7 @@
 						<th>product</th>
 						<th>Unit Price</th>
 						<th>Quantity</th>
+						<th></th>
 						<th>Total</th>
 						<th></th>
 					</tr>
@@ -20,7 +21,9 @@
 							width="150" height="150"></td>
 						<td></td>
 						<td></td>
-						<td></td>
+						<td><input type="number" name="quantity" min="1" max="5"></td>
+						<td><input type="submit" name="" class="btn btn-warning"
+							value="Change"></td>
 						<td></td>
 						<td><a href="#" class="btn btn-danger" role="button">
 								Remove</a></td>

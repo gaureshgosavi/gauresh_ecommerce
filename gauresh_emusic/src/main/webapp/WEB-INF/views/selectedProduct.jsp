@@ -8,16 +8,22 @@
 		<div class="col-md-6">
 			<div class="container">
 				<h2>Flute</h2>
-				<p>This is flute</p>
 				<br>
+				<p>Price:</p>
+				<br>
+				<p>Quantity:</p>
+				<input type="number" name="quantity" min="1" max="5"> <br>
 				<a href="#" class="btn btn-warning" role="button"> Add to Cart</a> <a
-					href="${contextPath}/cart_checkout" class="btn btn-success" role="button"> Buy Now</a>
+					href="${contextPath}/cart_checkout" class="btn btn-success"
+					role="button"> Buy Now</a>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="container">
-	<h2>Specifications</h2>
-	<p>These are specifications</p>
+	<fieldset>
+		<legend>Specifications</legend>
+		<p>These are specifications</p>
+	</fieldset>
 </div>
