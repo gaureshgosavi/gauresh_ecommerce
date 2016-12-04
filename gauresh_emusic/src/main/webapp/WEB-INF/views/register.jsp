@@ -1,5 +1,12 @@
 <div class="container">
 	<div class="row">
+		<c:if test="${!empty error}">
+			<div class="alert alert-danger" id="messageDelete-success">
+				<strong>${error}</strong>
+			</div>
+		</c:if>
+	</div>
+	<div class="row">
 
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-success">

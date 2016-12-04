@@ -47,10 +47,6 @@
 		<%@include file="login.jsp"%>
 	</c:if>
 
-	<c:if test="${ifUserClickedProductDetail == true }">
-		<%@include file="selectedProduct.jsp"%>
-	</c:if>
-
 	<c:if test="${ifAnyError == true }">
 		<%@include file="error.jsp"%>
 	</c:if>
@@ -61,6 +57,14 @@
 
 	<c:if test="${ifRegisterIsClicked == true }">
 		<%@include file="register.jsp"%>
+	</c:if>
+	
+	<c:if test="${ifUserClickedProductDetails == true }">
+		<%@include file="./user/selectedProduct.jsp"%>
+	</c:if>
+	
+	<c:if test="${ifUserSelectProductList == true }">
+		<%@include file="productList.jsp"%>
 	</c:if>
 
 	<%@include file="./shared/footer.jsp"%>

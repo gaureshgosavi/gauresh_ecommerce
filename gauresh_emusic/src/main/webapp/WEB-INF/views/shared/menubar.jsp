@@ -52,7 +52,15 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="${contextPath}/index">Home</a></li>
-						<li><a href="${contextPath}/product">Products</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><span
+								class="glyphicon glyphicon-hand-down"></span> Categories</a>
+							<ul class="dropdown-menu">
+								<c:forEach items="${categoryList}" var="category">
+									<li><a href="${contextPath}/viewProducts">${category.name}</a></li>
+								</c:forEach>
+							</ul></li>
 						<li><a href="${contextPath}/about">About us</a></li>
 						<li><a href="${contextPath}/contact">Contact us</a></li>
 					</ul>

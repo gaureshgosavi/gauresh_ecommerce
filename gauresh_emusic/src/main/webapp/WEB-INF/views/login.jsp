@@ -1,5 +1,10 @@
 
 <div class="container">
+	<c:if test="${!empty errorMessage}">
+		<div class="alert alert-danger" id="errorMessage">
+			<strong>${errorMessage}</strong>
+		</div>
+	</c:if>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-primary">

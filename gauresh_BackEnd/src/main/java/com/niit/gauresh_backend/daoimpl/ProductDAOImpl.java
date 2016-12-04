@@ -72,6 +72,13 @@ public class ProductDAOImpl implements ProductDAO{
 		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 
+	@Override
+	@Transactional
+	public List<Product> getByCategoryId(int categoryId) {
+		String hql= "from Product where category_id="+categoryId;
+		return sessionFactory.getCurrentSession().createQuery(hql).list();
+	}
+
 }
 
 
