@@ -21,6 +21,7 @@ public class SearchController {
 	@Autowired
 	private Product product;
 	
+	@RequestMapping("/searchList")
 	public ModelAndView getProducts(@PathVariable("searchString") String searchString){
 		
 		List<Product> products= productDAO.getSimilarProducts(searchString);

@@ -22,7 +22,7 @@
 				<p>Supplier:${supplier.name}</p>
 				<br> <input type="number" name="quantity" min="1" max="5">
 				<br> <a href="#" class="btn btn-warning" role="button"> Add
-					to Cart</a> <a href="${contextPath}/cart_checkout"
+					to Cart</a> <a href="cart_checkout"
 					class="btn btn-success" role="button"> Buy Now</a>
 			</div>
 		</div>

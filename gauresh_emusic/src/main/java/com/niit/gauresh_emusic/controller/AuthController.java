@@ -2,9 +2,11 @@ package com.niit.gauresh_emusic.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,14 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.gauresh_backend.dao.CategoryDAO;
-import com.niit.gauresh_backend.dao.ProductDAO;
-import com.niit.gauresh_backend.dao.SupplierDAO;
 import com.niit.gauresh_backend.dao.UserDAO;
-import com.niit.gauresh_backend.model.Category;
-import com.niit.gauresh_backend.model.Product;
-import com.niit.gauresh_backend.model.Supplier;
+import com.niit.gauresh_backend.dao.UserRoleDAO;
 import com.niit.gauresh_backend.model.User;
+import com.niit.gauresh_backend.model.UserRole;
 
 @Controller
 public class AuthController {
@@ -30,6 +28,12 @@ public class AuthController {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private UserRole userRole;
+
+	@Autowired
+	private UserRoleDAO userRoleDAO;
 
 	/*
 	 * @RequestMapping(value = "/login", method = RequestMethod.POST) public
@@ -94,8 +98,10 @@ public class AuthController {
 		
 		if (userDAO.getByUsername(user.getUsername()) == null) {
 
-			user.setRole("USER");
+			userRole.setRole("USER");
 			userDAO.saveOrUpdate(user);
+			userRole.setUsername(user.getUsername());
+			userRoleDAO.saveOrUpdate(userRole);
 
 		} else {
 			String ae="user exist";
@@ -106,15 +112,12 @@ public class AuthController {
 
 	}
 
-	// when user clicks logout
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ModelAndView logout(@RequestParam("message") String message, Model model) {
-		ModelAndView mv = new ModelAndView("/page");
-
-		if (message != null)
-			model.addAttribute("logoutMessage", "Successfully logged out.");
-
-		return mv;
-	}
-
+/*	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	    return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+	}*/
 }

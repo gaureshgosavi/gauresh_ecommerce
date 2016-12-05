@@ -45,3 +45,24 @@ constraint fk_product_supplier_id foreign key (supplier_id) references supplier 
 insert into PRODUCT (PRODUCT_id,CATEGORY_ID,SUPPLIER_ID,name,DESCRIPTION,UNIT_PRICE,QUANTITY) values (1,1,1,'Keyboards','This is an instrument','55000',5);
 insert into PRODUCT (PRODUCT_id,CATEGORY_ID,SUPPLIER_ID,name,DESCRIPTION,UNIT_PRICE,QUANTITY) values (2,1,2,'Guitars','This is an instrument','20000',2);
 insert into PRODUCT (PRODUCT_id,CATEGORY_ID,SUPPLIER_ID,name,DESCRIPTION,UNIT_PRICE,QUANTITY) values (3,1,1,'Drumset','This is an instrument','25000',3);
+
+
+INSERT INTO USER(USERNAME, PASSWORD, ROLE, USER_ENABLED) VALUES('gau@gmail.com', 'gauresh', 'USER', 'ENABLED');
+INSERT INTO USER(USERNAME, PASSWORD, ROLE, USER_ENABLED) VALUES('xyz@gmail.com', 'xyzxyz', 'USER', 'ENABLED');
+INSERT INTO USER(USERNAME, PASSWORD, ROLE, USER_ENABLED) VALUES('khoze@niit.com', 'niit', 'ADMIN', 'ENABLED')
+
+create table user(
+user_id identity,
+username varchar(50),
+password varchar(50),
+enabled boolean default 'true' 
+);
+
+create table userrole(
+username varchar(50),
+user_id int,
+role varchar(50),
+constraint fk_userrole_user_id foreign key (user_id) references user (user_id) on delete set null,
+);
+
+insert into userrole values('gau@gmail.com', 1, 'USER')

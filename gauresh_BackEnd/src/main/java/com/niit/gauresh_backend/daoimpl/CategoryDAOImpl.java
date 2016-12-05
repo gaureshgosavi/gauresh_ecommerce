@@ -22,7 +22,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public CategoryDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+	
+	@Override
 	@Transactional
 	public boolean create(Category category) {
 		// if(get(category.getId()) == null){
@@ -35,7 +36,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 			return false;
 		}
 	}
-
+	
+	@Override
 	@Transactional
 	public boolean saveOrUpdate(Category category) {
 		try {
@@ -45,7 +47,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 			return false;
 		}
 	}
-
+	
+	@Override
 	@Transactional
 	public boolean delete(Category category) {
 		try {
@@ -55,12 +58,14 @@ public class CategoryDAOImpl implements CategoryDAO {
 			return false;
 		}
 	}
-
+	
+	@Override
 	@Transactional
 	public Category get(int id) {
 		return (Category) sessionFactory.getCurrentSession().get(Category.class, id);
 	}
 
+	@Override
 	@Transactional
 	public List<Category> list() {
 		String hql = "from Category";

@@ -43,21 +43,32 @@ public class OrderWebFlow {
 	private OrderDetailsDAO orderDetailsDAO;
 	
 	@Autowired
-	User user;
+	private User user;
 	
 	@Autowired
-	UserDAO userDAO;
+	private UserDAO userDAO;
 	
 	@Autowired
-	HttpSession httpSession;
+	private HttpSession httpSession;
 	
 	@Autowired
-	Product product;
+	private Product product;
 	
 	@Autowired
-	PaymentDetails paymentDetails;
+	private PaymentDetails paymentDetails;
 	
 	@Autowired
-	PaymentDetailsDAO paymentDetailsDAO;
+	private PaymentDetailsDAO paymentDetailsDAO;
+	
+	public OrderDetails initFlow() {
+		orderDetails = new OrderDetails();
+		return orderDetails;
+	}
+	
+	public String addShippingAddress(OrderDetails orderDetails, ShippingAddress shippingAddress) {}
+	
+	public String addBillingAddress(OrderDetails orderDetails, BillingAddress billingAddress) {}
+	
+	public String addBillingAddress(OrderDetails orderDetails, PaymentDetails paymentDetails) {}
 
 }

@@ -6,30 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.gauresh_backend.dao.PaymentDetailsDAO;
-import com.niit.gauresh_backend.model.PaymentDetails;
+import com.niit.gauresh_backend.dao.UserRoleDAO;
+import com.niit.gauresh_backend.model.UserRole;
 
-@Repository("PaymentDetailsDAO")
-public class PaymentDetailsDAOImpl implements PaymentDetailsDAO{
+@Repository("userRoleDAO")
+public class UserRoleDAOImpl implements UserRoleDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public PaymentDetailsDAOImpl(SessionFactory sessionFactory) {
+	public UserRoleDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	@Override
 	@Transactional
-	public Boolean saveOrUpdate(PaymentDetails paymentDetails) {
+	public Boolean saveOrUpdate(UserRole userRole) {
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(paymentDetails);
+			sessionFactory.getCurrentSession().saveOrUpdate(userRole);
 			return true;
 		} catch (HibernateException e) {
 			return false;
 		}
 	}
-	
 }
-	
-

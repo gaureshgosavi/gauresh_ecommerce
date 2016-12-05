@@ -27,17 +27,7 @@ public class User {
 	@Transient
 	private String confirmPassword;
 	
-	private String role;
-	
 	private boolean enabled;
-	
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public String getConfirmPassword() {
 		return confirmPassword;

@@ -1,5 +1,12 @@
 <div class="container">
 	<div class="row">
+		<c:if test="${!empty msg}">
+			<div class="alert alert-default" id="errorMessage">
+				<strong>${msg}</strong>
+			</div>
+		</c:if>
+	</div>
+	<div class="row">
 		<table class="table table-hover">
 			<thead>
 				<tr>

@@ -58,7 +58,7 @@
 								class="glyphicon glyphicon-hand-down"></span> Categories</a>
 							<ul class="dropdown-menu">
 								<c:forEach items="${categoryList}" var="category">
-									<li><a href="${contextPath}/viewProducts">${category.name}</a></li>
+									<li><a href="${contextPath}/Product/productList/{categoryId}">${category.name}</a></li>
 								</c:forEach>
 							</ul></li>
 						<li><a href="${contextPath}/about">About us</a></li>
@@ -66,7 +66,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<form action="${contextPath}/search" class="search-form">
+							<form action="${contextPath}/search/searchList" class="search-form">
 								<div class="form-group has-feedback">
 									<label for="search" class="sr-only">Search</label> <input
 										type="text" class="form-control" name="search" id="search"
@@ -89,7 +89,7 @@
 											Suppliers</a></li>
 								</ul></li>
 						</sec:authorize>
-						<sec:authorize access="hasRole('ROLE_USER')">
+						<sec:authorize access="hasRole('USER')">
 
 							<li id="viewCart"><a id="A_viewCart"
 								href="${contextPath}/user/cart/"><span
@@ -108,9 +108,9 @@
 									<li><a href="${contextPath}/register">SignUp</a></li>
 								</ul></li>
 						</sec:authorize>
-						<security:authorize access="isAuthenticated()">
-							<li><a href="${contextPath}/logout">Log out</a></li>
-						</security:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<li><a href="${contextPath}/logout">Logout</a></li>
+						</sec:authorize>
 					</ul>
 				</div>
 			</div>

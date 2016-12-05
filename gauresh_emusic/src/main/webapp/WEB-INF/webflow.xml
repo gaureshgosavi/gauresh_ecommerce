@@ -6,7 +6,7 @@
 
 	<var name="shippingAddress" class="com.niit.gauresh_BackEnd.model.ShippingAddress" />
 	<var name="billingAddress" class="com.niit.gauresh_BackEnd.model.BillingAddress" />
-	<var name="order" class="com.niit.gauresh_BackEnd.model.OrderDetails" />
+	<var name="order" class="com.niit.gauresh_BackEnd.model.OrderReceipt" />
 	<var name="cart" class="com.niit.gauresh_BackEnd.model.Cart" />
 	<var name="paymentMethod" class="com.niit.gauresh_BackEnd.model.PaymentMethod" />
 

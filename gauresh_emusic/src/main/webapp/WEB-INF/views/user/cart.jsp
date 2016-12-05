@@ -37,7 +37,7 @@
 		</div>
 		<div class="row">
 			<a href="#" class="btn btn-danger" role="button"> Remove All</a> <a
-				class="pull-right" href="#" class="btn btn-success" role="button">
+				class="pull-right" href="cart_checkout" class="btn btn-success" role="button">
 				Checkout</a>
 		</div>
 	</fieldset>

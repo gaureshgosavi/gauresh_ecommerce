@@ -54,10 +54,15 @@
 		<property name="order" value="0" />
 	</bean>
 
+	<bean id="securityFlowExecutionListener"
+		class="org.springframework.webflow.security.SecurityFlowExecutionListener" />
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
 	<!-- View Resolver -->
 
-	<bean
+	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
