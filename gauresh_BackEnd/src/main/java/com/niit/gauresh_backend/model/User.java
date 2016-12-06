@@ -33,6 +33,17 @@ public class User {
 
 	@OneToOne(mappedBy="user",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	private UserRole role;
+	
+	@OneToOne(mappedBy="cart",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	private Cart cart;
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	public UserRole getUserRole() {
 		return role;

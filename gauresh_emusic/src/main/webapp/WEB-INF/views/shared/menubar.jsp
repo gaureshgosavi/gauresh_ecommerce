@@ -112,7 +112,7 @@
 								</ul></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-							<li><a href="${contextPath}/logout">Logout</a></li>
+							<li><a href="${contextPath}/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
 						</sec:authorize>
 					</ul>
 				</div>
