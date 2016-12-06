@@ -14,21 +14,21 @@ import com.niit.gauresh_backend.model.Category;
 
 @Controller
 public class PageController {
-	
+
 	@Autowired
 	private Category category;
-	
+
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private HttpSession session;
 
-	@RequestMapping(value = { "/", "/index"})
+	@RequestMapping(value = { "/", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		List<Category> categoryList = categoryDAO.list();
-		if(session.getAttribute("categoryList") == null)
+		if (session.getAttribute("categoryList") == null)
 			session.setAttribute("categoryList", categoryList);
 		mv.addObject("ifUserClickedHome", true);
 		mv.addObject("title", "index");
@@ -43,8 +43,8 @@ public class PageController {
 		return mv;
 	}
 
-	@RequestMapping(value ="/contact")
-    public ModelAndView contact(){
+	@RequestMapping(value = "/contact")
+	public ModelAndView contact() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("ifUserClickedContact", true);
 		mv.addObject("title", "contact");
@@ -58,7 +58,7 @@ public class PageController {
 		mv.addObject("title", "admin");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/login")
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView("page");
@@ -66,7 +66,7 @@ public class PageController {
 		mv.addObject("title", "login");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/productList")
 	public ModelAndView product() {
 		ModelAndView mv = new ModelAndView("page");
@@ -74,7 +74,7 @@ public class PageController {
 		mv.addObject("title", "product");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/productDetail")
 	public ModelAndView productDetail() {
 		ModelAndView mv = new ModelAndView("page");
@@ -82,5 +82,5 @@ public class PageController {
 		mv.addObject("title", "productDetail");
 		return mv;
 	}
-	
+
 }

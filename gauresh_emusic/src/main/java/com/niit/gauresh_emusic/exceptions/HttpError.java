@@ -15,4 +15,13 @@ public class HttpError {
 			model.addAttribute("showLogin", "true");
 			return mv;
 		}
+		
+		@RequestMapping("/403")
+		public ModelAndView accessDenied(Model model){
+			ModelAndView mv = new ModelAndView("page");
+			mv.addObject("ifAnyError", "true");	
+			model.addAttribute("showLogin", "true");
+			return mv;
+		}		
+		
 }

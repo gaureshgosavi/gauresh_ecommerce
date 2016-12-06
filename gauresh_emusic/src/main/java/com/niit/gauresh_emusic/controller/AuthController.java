@@ -99,9 +99,11 @@ public class AuthController {
 		if (userDAO.getByUsername(user.getUsername()) == null) {
 
 			userRole.setRole("USER");
-			userDAO.saveOrUpdate(user);
+			user.setEnabled(true);
 			userRole.setUsername(user.getUsername());
-			userRoleDAO.saveOrUpdate(userRole);
+			user.setUserRole(userRole);
+			userRole.setUser(user);
+			userDAO.saveOrUpdate(user);
 
 		} else {
 			String ae="user exist";

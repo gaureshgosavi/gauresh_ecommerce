@@ -1,10 +1,14 @@
 package com.niit.gauresh_backend.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -15,18 +19,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int userId;
 
-	@Column(name="username")
+	@Column(name = "username")
 	private String username;
-	
+
 	private String password;
-	
+
 	@Transient
 	private String confirmPassword;
-	
+
+	@OneToOne(mappedBy="user",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	private UserRole role;
+
+	public UserRole getUserRole() {
+		return role;
+	}
+
+	public void setUserRole(UserRole role) {
+		this.role = role;
+	}
+
 	private boolean enabled;
 
 	public String getConfirmPassword() {
@@ -36,7 +51,7 @@ public class User {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-	
+
 	public int getUserId() {
 		return userId;
 	}

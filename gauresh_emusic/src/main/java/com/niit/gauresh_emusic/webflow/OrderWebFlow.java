@@ -65,10 +65,10 @@ public class OrderWebFlow {
 		return orderDetails;
 	}
 	
-	public String addShippingAddress(OrderDetails orderDetails, ShippingAddress shippingAddress) {}
+/*	public String addShippingAddress(OrderDetails orderDetails, ShippingAddress shippingAddress) {}
 	
 	public String addBillingAddress(OrderDetails orderDetails, BillingAddress billingAddress) {}
 	
-	public String addBillingAddress(OrderDetails orderDetails, PaymentDetails paymentDetails) {}
+	public String addBillingAddress(OrderDetails orderDetails, PaymentDetails paymentDetails) {}*/
 
 }

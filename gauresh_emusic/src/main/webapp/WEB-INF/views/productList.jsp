@@ -22,8 +22,9 @@
 							class="img-rounded" alt="No Image Available" width="150"
 							height="150"></td>
 						<td>${product.name}</td>
-						<td><input type="submit" name="" class="btn btn-success"
-							value="View Product" size="30"></td>
+						<!--  <td><input type="submit" href="${contextPath}/product/productDetail/${productId}" class="btn btn-success"
+							value="View Product" size="30"></td> -->
+							<td><a href="${contextPath}/product/productDetail/${product.productId}" class="btn btn-success" role="button">View Product</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

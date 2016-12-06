@@ -58,7 +58,8 @@
 								class="glyphicon glyphicon-hand-down"></span> Categories</a>
 							<ul class="dropdown-menu">
 								<c:forEach items="${categoryList}" var="category">
-									<li><a href="${contextPath}/Product/productList/{categoryId}">${category.name}</a></li>
+									<li><a
+										href="${contextPath}/product/productList/${category.id}">${category.name}</a></li>
 								</c:forEach>
 							</ul></li>
 						<li><a href="${contextPath}/about">About us</a></li>
@@ -66,7 +67,8 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<form action="${contextPath}/search/searchList" class="search-form">
+							<form action="${contextPath}/search/searchList"
+								class="search-form">
 								<div class="form-group has-feedback">
 									<label for="search" class="sr-only">Search</label> <input
 										type="text" class="form-control" name="search" id="search"
@@ -75,7 +77,7 @@
 								</div>
 							</form>
 						</li>
-						<sec:authorize access="hasRole('ADMIN')">
+						<sec:authorize access="hasAuthority('ADMIN')">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false"><span
@@ -87,14 +89,15 @@
 											Categories</a></li>
 									<li><a href="${contextPath}/admin/viewSuppliers">View
 											Suppliers</a></li>
-								</ul></li>
+								</ul>
+							</li>
 						</sec:authorize>
-						<sec:authorize access="hasRole('USER')">
-
-							<li id="viewCart"><a id="A_viewCart"
+						<sec:authorize access="hasAuthority('USER')">
+							<li id="viewCart">
+								<a id="A_viewCart"
 								href="${contextPath}/user/cart/"><span
-									class="fa fa-cart-plus"></span> My Cart</a></li>
-
+								class="fa fa-cart-plus"></span> My Cart</a>
+							</li>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"

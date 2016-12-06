@@ -27,7 +27,7 @@
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="dataSource" users-by-username-query="select username, password, enabled from user where username = ?"
-				authorities-by-username-query="select username, role from userRole, user where user_id = user_id and username = ?"/>
+				authorities-by-username-query="select u.username, r.role from userrole r, user u where u.user_id = r.user_id and u.username = ?"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>
