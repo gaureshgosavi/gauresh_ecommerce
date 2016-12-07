@@ -1,5 +1,7 @@
 package com.niit.gauresh_backend.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +19,12 @@ import org.springframework.stereotype.Component;
 @Table
 @Entity
 @Component
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
@@ -34,7 +41,7 @@ public class User {
 	@OneToOne(mappedBy="user",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	private UserRole role;
 	
-	@OneToOne(mappedBy="cart",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(mappedBy="user",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	private Cart cart;
 
 	public Cart getCart() {

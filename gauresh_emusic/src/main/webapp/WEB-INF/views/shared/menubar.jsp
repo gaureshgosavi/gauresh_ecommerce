@@ -62,8 +62,9 @@
 										href="${contextPath}/product/productList/${category.id}">${category.name}</a></li>
 								</c:forEach>
 							</ul></li>
-						<li><a href="${contextPath}/about">About us</a></li>
-						<li><a href="${contextPath}/contact">Contact us</a></li>
+						<li><a href="${contextPath}/about"><i class="material-icons"></i> About us</a></li>
+						<li><a href="${contextPath}/contact"><span
+								class="glyphicon glyphicon-comment"></span> Contact us</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
@@ -89,15 +90,12 @@
 											Categories</a></li>
 									<li><a href="${contextPath}/admin/viewSuppliers">View
 											Suppliers</a></li>
-								</ul>
-							</li>
+								</ul></li>
 						</sec:authorize>
 						<sec:authorize access="hasAuthority('USER')">
-							<li id="viewCart">
-								<a id="A_viewCart"
-								href="${contextPath}/user/cart/"><span
-								class="fa fa-cart-plus"></span> My Cart</a>
-							</li>
+							<li id="viewCart"><a id="A_viewCart"
+								href="${contextPath}/user/cart/viewCart"><span
+									class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -107,12 +105,13 @@
 							</a>
 
 								<ul class="dropdown-menu">
-									<li><a href="${contextPath}/login">LogIn</a></li>
-									<li><a href="${contextPath}/register">SignUp</a></li>
+									<li><a href="${contextPath}/login"><i class="glyphicon glyphicon-user"></i> Login</a></li>
+									<li><a href="${contextPath}/register"><i class="fa fa-id-card-o"></i> SignUp</a></li>
 								</ul></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-							<li><a href="${contextPath}/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+							<li><a href="${contextPath}/logout"><span
+									class="glyphicon glyphicon-off"></span> Logout</a></li>
 						</sec:authorize>
 					</ul>
 				</div>

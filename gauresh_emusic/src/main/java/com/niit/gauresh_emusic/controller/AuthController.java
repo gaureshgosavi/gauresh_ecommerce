@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.gauresh_backend.dao.UserDAO;
 import com.niit.gauresh_backend.dao.UserRoleDAO;
+import com.niit.gauresh_backend.model.Cart;
 import com.niit.gauresh_backend.model.User;
 import com.niit.gauresh_backend.model.UserRole;
 
@@ -34,6 +35,9 @@ public class AuthController {
 
 	@Autowired
 	private UserRoleDAO userRoleDAO;
+	
+	@Autowired
+	private Cart cart;
 
 	/*
 	 * @RequestMapping(value = "/login", method = RequestMethod.POST) public
@@ -103,6 +107,11 @@ public class AuthController {
 			userRole.setUsername(user.getUsername());
 			user.setUserRole(userRole);
 			userRole.setUser(user);
+			cart.setNoOfProducts(0);
+			cart.setGrandTotal(0);
+			cart.setCartId(user.getUserId());
+			user.setCart(cart);
+			cart.setUser(user);
 			userDAO.saveOrUpdate(user);
 
 		} else {

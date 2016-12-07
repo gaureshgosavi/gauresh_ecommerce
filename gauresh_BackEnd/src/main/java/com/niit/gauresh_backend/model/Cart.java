@@ -1,6 +1,7 @@
 package com.niit.gauresh_backend.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -42,8 +44,8 @@ public class Cart implements Serializable{
     @PrimaryKeyJoinColumn
 	private User user;
 	
-	@OneToOne(mappedBy="cartItem",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	private CartItem cartItem;
+	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	private Set<CartItem> cartItem;
 
 	public User getUser() {
 		return user;
@@ -51,13 +53,13 @@ public class Cart implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public CartItem getCartItem() {
+	public Set<CartItem> getCartItem() {
 		return cartItem;
 	}
-	public void setCartItem(CartItem cartItem) {
+	public void setCartItem(Set<CartItem> cartItem) {
 		this.cartItem = cartItem;
 	}
-	public int getCaerId() {
+	public int getCartId() {
 		return cartId;
 	}
 	public void setCartId(int cartId) {

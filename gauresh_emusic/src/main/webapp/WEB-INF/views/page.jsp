@@ -66,6 +66,10 @@
 	<c:if test="${ifUserSelectProductList == true }">
 		<%@include file="productList.jsp"%>
 	</c:if>
+	
+	<c:if test="${ifUserClickedMyCart == true }">
+		<%@include file="./user/cart.jsp"%>
+	</c:if>
 
 	<%@include file="./shared/footer.jsp"%>
 

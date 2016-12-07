@@ -9,20 +9,20 @@
 			<div class="container">
 				<h2>${product.name}</h2>
 				<br>
-				<p>Description:${product.description}</p>
+				<p><b>Description:</b>	${product.description}</p>
 				<br>
 				<p>
-					<b>Price:${product.unitPrice}</b>
+					<b>Price:	 <i class="fa fa-inr"></i>${product.unitPrice}</b>
 				</p>
 				<br>
-				<p>Quantity:<input type="number" name="quantity" size="20" min="1" max="5"></p>
+				<p><b>Quantity:</b>	<input type="number" name="quantity" size="20" min="1" max="5"></p>
 				<br>
-				<p>Category:${category.name}</p>
+				<p><b>Category:</b>	${category.name}</p>
 				<br>
-				<p>Supplier:${supplier.name}</p>
-				<br> <a href="#" class="btn btn-warning" role="button"> Add
+				<p><b>Supplier:</b>	${supplier.name}</p>
+				<br> <a href="${contextPath}/user/cart/add/${product.productId}" class="btn btn-warning" role="button"> Add
 					to Cart</a> <a href="cart_checkout"
-					class="btn btn-success" role="button"> Buy Now</a>
+					class="btn btn-success" role="button"> Back</a>
 			</div>
 		</div>
 	</div>

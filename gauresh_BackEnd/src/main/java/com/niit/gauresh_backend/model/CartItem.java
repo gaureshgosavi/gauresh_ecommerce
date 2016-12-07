@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -29,22 +32,26 @@ public class CartItem implements Serializable {
 	@Column(name = "cart_item_id")
 	private int cartItemId;
 
-	@Column(name="cart_id")
-	@GeneratedValue(generator="fk")
-	@GenericGenerator(name="fk", strategy="foreign", parameters= @Parameter(name="property", value="cart"))
-	private int cartId;
-
-	@Column(name="product_id")
-	private int productId;
+	@ManyToOne
+	@JoinColumn(name = "product_id", nullable = false)
+	private Product product;
 
 	private int quantity;
 	
 	@Column(name="total_price")
 	private int totalPrice;
 	
-	@OneToOne
-    @PrimaryKeyJoinColumn
+	@ManyToOne
+	@JoinColumn(name = "cart_id", nullable = false)
 	private Cart cart;
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
 	public Cart getCart() {
 		return cart;
@@ -60,22 +67,6 @@ public class CartItem implements Serializable {
 
 	public void setCartItemId(int cartItemId) {
 		this.cartItemId = cartItemId;
-	}
-
-	public int getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
-
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
 	}
 
 	public int getQuantity() {

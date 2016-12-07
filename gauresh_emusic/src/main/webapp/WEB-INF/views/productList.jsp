@@ -10,8 +10,8 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Image</th>
-					<th>Name</th>
+					<th></th>
+					<th></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -21,13 +21,29 @@
 						<td><img src="${images}/product/${product.productId}.png"
 							class="img-rounded" alt="No Image Available" width="150"
 							height="150"></td>
-						<td>${product.name}</td>
+						<td><h3>${product.name}</h3> <br>${product.unitPrice}</td>
 						<!--  <td><input type="submit" href="${contextPath}/product/productDetail/${productId}" class="btn btn-success"
 							value="View Product" size="30"></td> -->
-							<td><a href="${contextPath}/product/productDetail/${product.productId}" class="btn btn-success" role="button">View Product</a></td>
+						<td><a
+							href="${contextPath}/product/productDetail/${product.productId}"
+							class="btn btn-success" role="button">View Product</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-</div>
+</div> 
+<!--  <div class="container">
+	<c:forEach items="${productList}" var="product">
+		<div class="col-md-3 col-sm-6">
+			<div class="responsive">
+				<div class="img">
+					<a target="_blank" href="${contextPath}/product/productDetail/${product.productId}"> <img
+						src="${images}/product/${product.productId}.png" alt="Forest" width="600" height="400">
+					</a>
+					<div class="desc"><h3 align="center">${product.name}</h3><p align="center">${product.unitPrice}</p></div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+</div>-->

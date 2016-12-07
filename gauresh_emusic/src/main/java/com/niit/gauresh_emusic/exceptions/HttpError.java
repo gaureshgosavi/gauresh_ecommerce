@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HttpError {
 
-		@RequestMapping(value={"/400","/500","/404","/410"})
+		/*@RequestMapping(value={"/400","/500","/404","/410"})
 		public ModelAndView error(Model model){
 			ModelAndView mv = new ModelAndView("page");
 			mv.addObject("ifAnyError", "true");	
@@ -22,6 +22,6 @@ public class HttpError {
 			mv.addObject("ifAnyError", "true");	
 			model.addAttribute("showLogin", "true");
 			return mv;
-		}		
+		}		*/
 		
 }
