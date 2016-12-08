@@ -12,6 +12,6 @@ public interface CartItemDAO {
 
 	public CartItem getCartItem(int cartItemId);
 	
-	public List<CartItem> listCartItems();
+	public List<CartItem> listCartItems(int cartId);
 	
 }

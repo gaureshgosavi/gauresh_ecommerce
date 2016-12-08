@@ -1,6 +1,7 @@
 package com.niit.gauresh_backend.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,7 +46,7 @@ public class Cart implements Serializable{
 	private User user;
 	
 	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
-	private Set<CartItem> cartItem;
+	private List<CartItem> cartItem;
 
 	public User getUser() {
 		return user;
@@ -53,10 +54,10 @@ public class Cart implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Set<CartItem> getCartItem() {
+	public List<CartItem> getCartItem() {
 		return cartItem;
 	}
-	public void setCartItem(Set<CartItem> cartItem) {
+	public void setCartItem(List<CartItem> cartItem) {
 		this.cartItem = cartItem;
 	}
 	public int getCartId() {

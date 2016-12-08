@@ -1,6 +1,7 @@
 package com.niit.gauresh_emusic.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,23 +49,24 @@ public class CartController {
 	public ModelAndView viewCart(Model model, @RequestParam(value = "msg", required = false) String msg,
 			Principal principal) {
 		ModelAndView mv = new ModelAndView("page");
+		if (msg == null) {
+			msg = "error";
 
-		if (msg.equals("addfailure")) {
-			model.addAttribute("addfailure", "Failed to add the product to the cart.");
+			if (msg.equals("addfailure")) {
+				model.addAttribute("addfailure", "Failed to add the product to the cart.");
+			} else if (msg.equals("removefailure")) {
+				model.addAttribute("removefailure", "Failed to remove item from the cart");
+			} else if (msg.equals("out of stock")) {
+				model.addAttribute("out of stock",
+						"Sorry, Quantity of product you are trying to update is unavailable in our stock");
+			}
 		}
-		if (msg.equals("removefailure")) {
-			model.addAttribute("removefailure", "Failed to remove item from the cart");
-		}
-		if (msg.equals("out of stock")) {
-			model.addAttribute("out of stock",
-					"Sorry, Quantity of product you are trying to update is unavailable in our stock");
-		}
-		
+
 		user = userDAO.getByUsername(principal.getName());
 		cart = user.getCart();
-		Set<CartItem> Items = cart.getCartItem();
+		List<CartItem> Items = cart.getCartItem();
 		if (Items.size() == 0) {
-			mv.addObject("noProduct", "Your cart is empty");
+			mv.addObject("noProduct", "Your cart is empty!!!");
 		} else {
 			mv.addObject("cartItems", Items);
 			mv.addObject("cart", user.getCart());
@@ -75,39 +77,57 @@ public class CartController {
 	}
 
 	@RequestMapping("/add/{productId}")
-	public String addToCart(@PathVariable("productId") int id) {
+	public String addToCart(@PathVariable("productId") int id, Principal principal) {
 		ModelAndView mv = new ModelAndView("page");
 
 		product = productDAO.get(id);
+		user = userDAO.getByUsername(principal.getName());
 		cart = user.getCart();
-		Set<CartItem> Items = cart.getCartItem();
+		List<CartItem> Items = cart.getCartItem();
 		String msg = null;
 
-		for (CartItem item : Items) {
-			if (product.getProductId() == item.getCartItemId()) {
-				cartItem.setQuantity(cartItem.getQuantity() + 1);
-				int quantity = cartItem.getQuantity();
-				cartItem.setTotalPrice(quantity * product.getUnitPrice());
-				boolean flag = cartItemDAO.saveOrUpdate(item);
-				if (flag == true) {
-					msg = "addsuccess";
-				} else {
-					msg = "addfailure";
-				}
-			} else {
-				boolean flag = cartItemDAO.saveOrUpdate(item);
-				if (flag == true) {
-					msg = "addsuccess";
-				} else {
-					msg = "addfailure";
-				}
-			}
+		if (Items.size() != 0) {
+			for (CartItem item : Items) {
+				if (product.getProductId() == item.getProduct().getProductId()) {
+					cartItem.setQuantity(cartItem.getQuantity() + 1);
+					cartItem.setTotalPrice(cartItem.getQuantity() * product.getUnitPrice());
+					boolean flag = cartItemDAO.saveOrUpdate(item);
 
+					if (flag == true) {
+						msg = "addsuccess";
+					} else {
+						msg = "addfailure";
+
+					}
+					List<CartItem> updatedItems = cartItemDAO.listCartItems(cart.getCartId());
+					for (CartItem updatedItem : updatedItems) {
+						cart.setGrandTotal(cart.getGrandTotal() + updatedItem.getTotalPrice());
+					}
+					cart.setNoOfProducts(updatedItems.size());
+					userDAO.saveOrUpdate(user);
+
+					return "redirect:/user/cart/viewCart?msg=" + msg;
+				}
+
+			}
 		}
-		for (CartItem item : Items) {
+
+		cartItem.setQuantity(1);
+		cartItem.setProduct(product);
+		cartItem.setTotalPrice(product.getUnitPrice());
+		cartItem.setCart(cart);
+		boolean flag = cartItemDAO.saveOrUpdate(cartItem);
+		if (flag == true) {
+			msg = "addsuccess";
+		} else {
+			msg = "addfailure";
+		}
+
+		List<CartItem> updatedItems = cartItemDAO.listCartItems(cart.getCartId());
+		for (CartItem item : updatedItems) {
 			cart.setGrandTotal(cart.getGrandTotal() + item.getTotalPrice());
 		}
-		cart.setNoOfProducts(Items.size());
+		cart.setNoOfProducts(updatedItems.size());
 		userDAO.saveOrUpdate(user);
 		return "redirect:/user/cart/viewCart?msg=" + msg;
 
@@ -117,7 +137,7 @@ public class CartController {
 	public String removeCartItems(@PathVariable("cartItemId") int cartItemId, Model model) {
 		ModelAndView mv = new ModelAndView();
 		String msg = null;
-		Set<CartItem> Items = cart.getCartItem();
+		List<CartItem> Items = cart.getCartItem();
 		boolean flag = cartItemDAO.delete(cartItemId);
 		if (flag == true) {
 			cart.setGrandTotal(cart.getCartId() - cartItem.getTotalPrice());
@@ -135,7 +155,7 @@ public class CartController {
 
 	@RequestMapping("/remove/all")
 	public String removeAllItems() {
-		Set<CartItem> Items = cart.getCartItem();
+		List<CartItem> Items = cart.getCartItem();
 		for (CartItem item : Items) {
 			cartItemDAO.delete(item.getCartItemId());
 		}
@@ -151,7 +171,7 @@ public class CartController {
 			@RequestParam(value = "quantity") int quantity) {
 		cartItem = cartItemDAO.getCartItem(cartItemId);
 		product = cartItem.getProduct();
-		Set<CartItem> Items = cart.getCartItem();
+		List<CartItem> Items = cart.getCartItem();
 		if (quantity > product.getQuantity()) {
 			String msg = "out of stock";
 			return "redirect:/user/cart/viewCart?msg=" + msg;

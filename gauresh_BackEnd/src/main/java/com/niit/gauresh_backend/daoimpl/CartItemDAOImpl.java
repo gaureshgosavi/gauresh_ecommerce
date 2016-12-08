@@ -1,6 +1,7 @@
 package com.niit.gauresh_backend.daoimpl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Query;
 
@@ -49,9 +50,10 @@ public class CartItemDAOImpl implements CartItemDAO{
 	
 	@Override
 	@Transactional
-	public List<CartItem> listCartItems() {
-		String hql = "from CartItem";
+	public List<CartItem> listCartItems(int cartId) {
+		String hql = "FROM CartItem WHERE cart_id = :cartId";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter("cartId", cartId);
 		List<CartItem> cartItems = query.getResultList();
 		return cartItems;
 	}
