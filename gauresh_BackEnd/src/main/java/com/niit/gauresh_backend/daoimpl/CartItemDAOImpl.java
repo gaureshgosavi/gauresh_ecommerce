@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.gauresh_backend.dao.CartItemDAO;
+import com.niit.gauresh_backend.model.Cart;
 import com.niit.gauresh_backend.model.CartItem;
 
 @Repository("CartItemDAO")
@@ -39,9 +40,10 @@ public class CartItemDAOImpl implements CartItemDAO{
 	
 	@Override
 	@Transactional
-	public boolean delete(int cartItemId) {
+	public boolean delete(CartItem cartItem) {
 		try {
-			sessionFactory.getCurrentSession().delete(cartItemId);
+			sessionFactory.getCurrentSession().delete(cartItem);
+			//sessionFactory.getCurrentSession().flush();
 			return true;
 		} catch (HibernateException e) {
 			return false;
@@ -62,6 +64,13 @@ public class CartItemDAOImpl implements CartItemDAO{
 	@Transactional
 	public CartItem getCartItem(int cartItemId) {
 		return (CartItem) sessionFactory.getCurrentSession().get(CartItem.class, cartItemId);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateCart(Cart cart) {
+		sessionFactory.getCurrentSession().update(cart);
+		return false;
 	}
 	
 }

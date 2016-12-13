@@ -26,13 +26,17 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	@Transactional
 	public Boolean saveOrUpdate(User user) {
-		try {
+		
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		return true;
+		
+/*		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(user);
 			return true;
 		} catch (HibernateException e) {
 			return false;
 		}
-	}
+*/	}
 
 	@Override
 	@Transactional

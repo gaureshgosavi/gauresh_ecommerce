@@ -15,7 +15,7 @@
 					<b>Price:	 <i class="fa fa-inr"></i>${product.unitPrice}</b>
 				</p>
 				<br>
-				<p><b>Quantity:</b>	<input type="number" name="quantity" size="20" min="1" max="5"></p>
+				<p><b>Quantity:</b>	<input type="number" name="quantity" size="20" value="1" min="0" max="1"></p>
 				<br>
 				<p><b>Category:</b>	${category.name}</p>
 				<br>

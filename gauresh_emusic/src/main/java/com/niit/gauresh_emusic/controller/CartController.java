@@ -39,7 +39,6 @@ public class CartController {
 	@Autowired
 	private Cart cart;
 
-	@Autowired
 	private CartItem cartItem;
 
 	@Autowired
@@ -49,9 +48,7 @@ public class CartController {
 	public ModelAndView viewCart(Model model, @RequestParam(value = "msg", required = false) String msg,
 			Principal principal) {
 		ModelAndView mv = new ModelAndView("page");
-		if (msg == null) {
-			msg = "error";
-
+		if (msg != null) {
 			if (msg.equals("addfailure")) {
 				model.addAttribute("addfailure", "Failed to add the product to the cart.");
 			} else if (msg.equals("removefailure")) {
@@ -68,7 +65,10 @@ public class CartController {
 		if (Items.size() == 0) {
 			mv.addObject("noProduct", "Your cart is empty!!!");
 		} else {
-			mv.addObject("cartItems", Items);
+			user = userDAO.getByUsername(principal.getName());
+			cart = user.getCart();
+			cartItem = new CartItem();
+			mv.addObject("cartItems", cartItemDAO.listCartItems(cart.getCartId()));
 			mv.addObject("cart", user.getCart());
 			mv.addObject("product", cartItem.getProduct());
 		}
@@ -89,8 +89,9 @@ public class CartController {
 		if (Items.size() != 0) {
 			for (CartItem item : Items) {
 				if (product.getProductId() == item.getProduct().getProductId()) {
-					cartItem.setQuantity(cartItem.getQuantity() + 1);
-					cartItem.setTotalPrice(cartItem.getQuantity() * product.getUnitPrice());
+					cartItem = cartItemDAO.getCartItem(item.getCartItemId());
+					item.setQuantity(cartItem.getQuantity() + 1);
+					item.setTotalPrice((cartItem.getQuantity()+1) * product.getUnitPrice());
 					boolean flag = cartItemDAO.saveOrUpdate(item);
 
 					if (flag == true) {
@@ -99,18 +100,22 @@ public class CartController {
 						msg = "addfailure";
 
 					}
+					
 					List<CartItem> updatedItems = cartItemDAO.listCartItems(cart.getCartId());
+					int t = 0;
 					for (CartItem updatedItem : updatedItems) {
-						cart.setGrandTotal(cart.getGrandTotal() + updatedItem.getTotalPrice());
+						t += updatedItem.getTotalPrice();
 					}
+					cart.setGrandTotal(t);
 					cart.setNoOfProducts(updatedItems.size());
-					userDAO.saveOrUpdate(user);
+					cartItemDAO.updateCart(cart);
 
 					return "redirect:/user/cart/viewCart?msg=" + msg;
 				}
 
 			}
 		}
+		cartItem = new CartItem();
 
 		cartItem.setQuantity(1);
 		cartItem.setProduct(product);
@@ -122,48 +127,65 @@ public class CartController {
 		} else {
 			msg = "addfailure";
 		}
-
+		
+		int t = 0;
+		
 		List<CartItem> updatedItems = cartItemDAO.listCartItems(cart.getCartId());
 		for (CartItem item : updatedItems) {
-			cart.setGrandTotal(cart.getGrandTotal() + item.getTotalPrice());
+			t += item.getTotalPrice();
 		}
+		cart.setGrandTotal(t);
 		cart.setNoOfProducts(updatedItems.size());
-		userDAO.saveOrUpdate(user);
+		cartItemDAO.updateCart(cart);
 		return "redirect:/user/cart/viewCart?msg=" + msg;
 
 	}
 
+	@RequestMapping("/remove/all")
+	public String removeAllItems(Principal principal) {
+		user = userDAO.getByUsername(principal.getName());
+		cart = user.getCart();
+		List<CartItem> Items = cart.getCartItem();
+		for (CartItem item : Items) {
+			cartItemDAO.delete(item);
+		}
+		
+		
+		user = userDAO.getByUsername(principal.getName());
+		cart = user.getCart();
+		
+		
+		cart.setGrandTotal(0);
+		cart.setNoOfProducts(0);
+		cartItemDAO.updateCart(cart);
+		return "redirect:/user/cart/viewCart";
+
+	}
+
 	@RequestMapping("/remove/{cartItemId}")
-	public String removeCartItems(@PathVariable("cartItemId") int cartItemId, Model model) {
+	public String removeCartItems(@PathVariable("cartItemId") int cartItemId, Model model, Principal principal) {
 		ModelAndView mv = new ModelAndView();
 		String msg = null;
-		List<CartItem> Items = cart.getCartItem();
-		boolean flag = cartItemDAO.delete(cartItemId);
+		user = userDAO.getByUsername(principal.getName());
+		cart = user.getCart();
+		cartItem = cartItemDAO.getCartItem(cartItemId);
+		boolean flag = cartItemDAO.delete(cartItem);
 		if (flag == true) {
 			cart.setGrandTotal(cart.getCartId() - cartItem.getTotalPrice());
 			msg = "removesuccess";
 		} else {
 			msg = "removefailure";
 		}
+		
+		user = userDAO.getByUsername(principal.getName());
+		cart = user.getCart();
+		List<CartItem> Items = cart.getCartItem();
 		for (CartItem item : Items) {
 			cart.setGrandTotal(cart.getGrandTotal() + item.getTotalPrice());
 		}
 		cart.setNoOfProducts(Items.size());
 		userDAO.saveOrUpdate(user);
 		return "redirect:/user/cart/viewCart?msg=" + msg;
-	}
-
-	@RequestMapping("/remove/all")
-	public String removeAllItems() {
-		List<CartItem> Items = cart.getCartItem();
-		for (CartItem item : Items) {
-			cartItemDAO.delete(item.getCartItemId());
-		}
-		cart.setGrandTotal(0);
-		cart.setNoOfProducts(0);
-		userDAO.saveOrUpdate(user);
-		return "redirect:/user/cart/viewCart";
-
 	}
 
 	@RequestMapping("/change")

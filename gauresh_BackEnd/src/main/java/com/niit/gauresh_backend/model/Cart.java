@@ -2,21 +2,17 @@ package com.niit.gauresh_backend.model;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 import org.springframework.stereotype.Component;
 
 @Table
@@ -29,10 +25,14 @@ public class Cart implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public Cart(){
+	//	this.cartId = (int)(Math.random()*10000000000L);
+	}
+	
 	@Id
 	@Column(name = "cart_id")
-	@GeneratedValue(generator="fk")
-	@GenericGenerator(name="fk", strategy="foreign", parameters= @Parameter(name="property", value="user"))
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	@GenericGenerator(name="fk", strategy="foreign", parameters= @Parameter(name="property", value="user"))
 	private int cartId;
 	
 	@Column(name = "grand_total")
@@ -41,12 +41,9 @@ public class Cart implements Serializable{
 	@Column(name = "no_of_products")
 	private int noOfProducts;
 	
-	@OneToOne
+/*	@OneToOne
     @PrimaryKeyJoinColumn
 	private User user;
-	
-	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
-	private List<CartItem> cartItem;
 
 	public User getUser() {
 		return user;
@@ -54,6 +51,13 @@ public class Cart implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+*/	
+	
+	
+	
+	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	private List<CartItem> cartItem;
+
 	public List<CartItem> getCartItem() {
 		return cartItem;
 	}

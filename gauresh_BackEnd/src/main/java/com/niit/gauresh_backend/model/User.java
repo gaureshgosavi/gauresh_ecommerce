@@ -9,8 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -38,10 +38,11 @@ public class User implements Serializable{
 	@Transient
 	private String confirmPassword;
 
-	@OneToOne(mappedBy="user",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy ="user")
 	private UserRole role;
 	
-	@OneToOne(mappedBy="user",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name= "cart_id")
 	private Cart cart;
 
 	public Cart getCart() {

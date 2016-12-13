@@ -68,10 +68,10 @@ constraint fk_userrole_user_id foreign key (user_id) references user (user_id) o
 insert into userrole values('gau@gmail.com', 1, 'USER')
 
 create table cart(
-cart_id int,
+cart_id IDENTITY,
 grand_total int,
 no_of_products int,
-constraint fk_cart_user_user_id foreign key (cart_id) references user (user_id) on delete set null
+constraint pk_cart_user_user_id primary key (cart_id)
 );
 
 create table cartitem(

@@ -19,7 +19,7 @@ public class UserRoleDAOImpl implements UserRoleDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
+	
 	@Transactional
 	public Boolean saveOrUpdate(UserRole userRole) {
 		try {

@@ -21,7 +21,7 @@
 						<td><img src="${images}/product/${product.productId}.png"
 							class="img-rounded" alt="No Image Available" width="150"
 							height="150"></td>
-						<td><h3>${product.name}</h3> <br>${product.unitPrice}</td>
+						<td><h3>${product.name}</h3> <br>&#8377; ${product.unitPrice}</td>
 						<!--  <td><input type="submit" href="${contextPath}/product/productDetail/${productId}" class="btn btn-success"
 							value="View Product" size="30"></td> -->
 						<td><a
