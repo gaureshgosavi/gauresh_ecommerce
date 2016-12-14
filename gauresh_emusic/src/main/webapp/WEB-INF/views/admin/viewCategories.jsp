@@ -53,17 +53,15 @@
 							</div>
 							<div class="form-group">
 								<c:if test="${empty category.name}">
-									<button type="submit" class="btn btn-primary">Add New
+									<button type="submit" class="btn btn-success">Add New
 										Category</button>
 								</c:if>
 								<c:if test="${!empty category.name}">
-									<button type="submit" class="btn btn-primary">Update
+									<button type="submit" class="btn btn-success">Update
 										Category</button>
 								</c:if>
-								<button type="submit" class="btn btn-primary">
-									<span class="glyphicon glyphicon-circle-arrow-left"></span>
-									Back
-								</button>
+								<a href="${contextPath}/admin/viewCategories"
+									class="btn btn-warning" role="button"> Clear </a>
 							</div>
 						</form:form>
 					</c:otherwise>
@@ -89,17 +87,18 @@
 		<tbody>
 			<c:forEach items="${categoryList}" var="category">
 				<tr>
-					<td><img src="${images}/category/${category.id}.png" class="img-rounded" alt="No Image Available"
-						width="150" height="150"></td>
+					<td><img src="${images}/category/${category.id}.png"
+						class="img-rounded" alt="No Image Available" width="150"
+						height="150"></td>
 					<td>${category.name}</td>
 					<td>${category.description}</td>
 					<td><a
 						href="${contextPath}/admin/viewCategories/edit/${category.id}"
-						class="btn btn-default" role="button"><span
+						class="btn btn-warning" role="button"><span
 							class="glyphicon glyphicon-pencil"></span> Edit</a></td>
 					<td><a
 						href="${contextPath}/admin/viewCategories/delete/${category.id}"
-						class="btn btn-default" role="button"><span
+						class="btn btn-danger" role="button"><span
 							class="glyphicon glyphicon-trash"></span> Delete</a></td>
 				</tr>
 			</c:forEach>

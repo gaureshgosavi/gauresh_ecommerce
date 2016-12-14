@@ -20,9 +20,9 @@
 				<p><b>Category:</b>	${category.name}</p>
 				<br>
 				<p><b>Supplier:</b>	${supplier.name}</p>
-				<br> <a href="${contextPath}/user/cart/add/${product.productId}" class="btn btn-warning" role="button"> Add
-					to Cart</a> <a href="cart_checkout"
-					class="btn btn-success" role="button"> Back</a>
+				<br> <a href="${contextPath}/user/cart/add/${product.productId}" class="btn btn-success" role="button"> Add
+					to Cart</a> <a href="${contextPath}/product/allProducts"
+					class="btn btn-warning" role="button"> Back</a>
 			</div>
 		</div>
 	</div>

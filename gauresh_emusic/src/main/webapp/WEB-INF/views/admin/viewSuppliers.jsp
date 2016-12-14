@@ -53,17 +53,15 @@
 							</div>
 							<div class="form-group">
 								<c:if test="${empty supplier.name}">
-									<button type="submit" class="btn btn-primary">Add New
+									<button type="submit" class="btn btn-success">Add New
 										Supplier</button>
 								</c:if>
 								<c:if test="${!empty supplier.name}">
-									<button type="submit" class="btn btn-primary">Update
+									<button type="submit" class="btn btn-success">Update
 										Product</button>
 								</c:if>
-								<button type="submit" class="btn btn-primary">
-									<span class="glyphicon glyphicon-circle-arrow-left"></span>
-									Back
-								</button>
+								<a href="${contextPath}/admin/viewSuppliers"
+									class="btn btn-warning" role="button"> Clear </a>
 							</div>
 						</form:form>
 					</c:otherwise>
@@ -93,11 +91,11 @@
 					<td>${supplier.contactNo}</td>
 					<td><a
 						href="${contextPath}/admin/viewSuppliers/edit/${supplier.id}"
-						class="btn btn-default" role="button"><span
+						class="btn btn-warning" role="button"><span
 							class="glyphicon glyphicon-pencil"></span> Edit</a></td>
 					<td><a
 						href="${contextPath}/admin/viewSuppliers/delete/${supplier.id}"
-						class="btn btn-default" role="button"> <span
+						class="btn btn-danger" role="button"> <span
 							class="glyphicon glyphicon-trash"></span> Delete
 					</a></td>
 				</tr>

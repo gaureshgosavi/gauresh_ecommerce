@@ -74,7 +74,8 @@
 							<div class="form-group">
 								<label for="quantity">Quantity</label>
 								<form:input path="quantity" type="number"
-									cssClass="form-control" id="quantity" placeholder="Quantity" required="true" />
+									cssClass="form-control" id="quantity" placeholder="Quantity"
+									required="true" />
 							</div>
 							<div class="form-group">
 								<label for="uploadfile">Upload File</label>
@@ -83,17 +84,15 @@
 							</div>
 							<div class="form-group">
 								<c:if test="${empty product.name}">
-									<button type="submit" class="btn btn-primary">Add New
+									<button type="submit" class="btn btn-success">Add New
 										Product</button>
 								</c:if>
 								<c:if test="${!empty product.name}">
-									<button type="submit" class="btn btn-primary">Update
+									<button type="submit" class="btn btn-success">Update
 										Product</button>
 								</c:if>
-								<button type="submit" class="btn btn-primary">
-									<span class="glyphicon glyphicon-circle-arrow-left"></span>
-									Back
-								</button>
+								<a href="${contextPath}/admin/viewProducts"
+									class="btn btn-warning" role="button"> Clear </a>
 							</div>
 						</form:form>
 					</c:otherwise>
@@ -122,19 +121,20 @@
 		<tbody>
 			<c:forEach items="${productList}" var="product">
 				<tr>
-					<td><img src="${images}/product/${product.productId}.png" class="img-rounded" alt="No Image Available"
-						width="150" height="150"></td>
+					<td><img src="${images}/product/${product.productId}.png"
+						class="img-rounded" alt="No Image Available" width="150"
+						height="150"></td>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
 					<td>${product.unitPrice}</td>
 					<td>${product.quantity}</td>
 					<td><a
 						href="${contextPath}/admin/viewProducts/edit/${product.productId}"
-						class="btn btn-default" role="button"><span
+						class="btn btn-warning" role="button"><span
 							class="glyphicon glyphicon-pencil"></span> Edit</a></td>
 					<td><a
 						href="${contextPath}/admin/viewProducts/delete/${product.productId}"
-						class="btn btn-default" role="button"><span
+						class="btn btn-danger" role="button"><span
 							class="glyphicon glyphicon-trash"></span> Delete</a></td>
 				</tr>
 			</c:forEach>

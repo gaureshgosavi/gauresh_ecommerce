@@ -58,9 +58,9 @@
 					</table>
 				</div>
 				<div class="row">
-					<a href="${contextPath}/user/cart/remove/all" class="btn btn-danger" role="button"> Remove All</a> <a
-						class="pull-right" href="cart_checkout" class="btn-success"
-						role="button"> Checkout</a>
+					<a href="${contextPath}/user/cart/remove/all" class="btn btn-danger" role="button"> Remove All</a> <a href="${contextPath}/product/allProducts"
+					class="btn btn-success" role="button"> Continue Shopping...</a> <a
+						class="pull-right" href="cart_checkout" class="btn btn-success" role="button"> Checkout</a>
 				</div>
 			</fieldset>
 		</c:otherwise>

@@ -62,22 +62,13 @@
 										href="${contextPath}/product/productList/${category.id}">${category.name}</a></li>
 								</c:forEach>
 							</ul></li>
-						<li><a href="${contextPath}/about"><i class="material-icons"></i> About us</a></li>
+						<li><a href="${contextPath}/product/allProducts"><i class="fa fa-music"></i>  Products</a></li>
+						<li><a href="${contextPath}/about"><i
+								class="material-icons"></i> About us</a></li>
 						<li><a href="${contextPath}/contact"><span
 								class="glyphicon glyphicon-comment"></span> Contact us</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<form action="${contextPath}/search/searchList"
-								class="search-form">
-								<div class="form-group has-feedback">
-									<label for="search" class="sr-only">Search</label> <input
-										type="text" class="form-control" name="search" id="search"
-										placeholder="search"> <span
-										class="glyphicon glyphicon-search form-control-feedback"></span>
-								</div>
-							</form>
-						</li>
 						<sec:authorize access="hasAuthority('ADMIN')">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -105,8 +96,10 @@
 							</a>
 
 								<ul class="dropdown-menu">
-									<li><a href="${contextPath}/login"><i class="glyphicon glyphicon-user"></i> Login</a></li>
-									<li><a href="${contextPath}/register"><i class="fa fa-id-card-o"></i> SignUp</a></li>
+									<li><a href="${contextPath}/login"><i
+											class="glyphicon glyphicon-user"></i> Login</a></li>
+									<li><a href="${contextPath}/register"><i
+											class="fa fa-id-card-o"></i> SignUp</a></li>
 								</ul></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">

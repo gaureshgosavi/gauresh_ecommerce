@@ -67,9 +67,18 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/productList/{categoryId}")
-	public ModelAndView productList(@PathVariable int categoryId, Model model){
+	public ModelAndView productListByCategory(@PathVariable int categoryId, Model model){
 		ModelAndView mv = new ModelAndView("/page");
 		List<Product> productList= productDAO.getByCategoryId(categoryId);
+		mv.addObject("productList", productList);
+		mv.addObject("ifUserSelectProductList", true);
+		return mv;
+	}
+	
+	@RequestMapping("/allProducts")
+	public ModelAndView allProducts(Model model){
+		ModelAndView mv = new ModelAndView("/page");
+		List<Product> productList= productDAO.list();
 		mv.addObject("productList", productList);
 		mv.addObject("ifUserSelectProductList", true);
 		return mv;
