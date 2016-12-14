@@ -4,6 +4,9 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +46,9 @@ public class CartController {
 
 	@Autowired
 	private CartItemDAO cartItemDAO;
+	
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping("/viewCart")
 	public ModelAndView viewCart(Model model, @RequestParam(value = "msg", required = false) String msg,
@@ -109,7 +115,7 @@ public class CartController {
 					cart.setGrandTotal(t);
 					cart.setNoOfProducts(updatedItems.size());
 					cartItemDAO.updateCart(cart);
-
+					session.setAttribute("noOfCartItems", cart.getNoOfProducts());
 					return "redirect:/user/cart/viewCart?msg=" + msg;
 				}
 
@@ -137,6 +143,7 @@ public class CartController {
 		cart.setGrandTotal(t);
 		cart.setNoOfProducts(updatedItems.size());
 		cartItemDAO.updateCart(cart);
+		session.setAttribute("noOfCartItems", cart.getNoOfProducts());
 		return "redirect:/user/cart/viewCart?msg=" + msg;
 
 	}
@@ -158,6 +165,7 @@ public class CartController {
 		cart.setGrandTotal(0);
 		cart.setNoOfProducts(0);
 		cartItemDAO.updateCart(cart);
+		session.setAttribute("noOfCartItems", cart.getNoOfProducts());
 		return "redirect:/user/cart/viewCart";
 
 	}
@@ -171,41 +179,51 @@ public class CartController {
 		cartItem = cartItemDAO.getCartItem(cartItemId);
 		boolean flag = cartItemDAO.delete(cartItem);
 		if (flag == true) {
-			cart.setGrandTotal(cart.getCartId() - cartItem.getTotalPrice());
 			msg = "removesuccess";
 		} else {
 			msg = "removefailure";
 		}
-		
 		user = userDAO.getByUsername(principal.getName());
 		cart = user.getCart();
 		List<CartItem> Items = cart.getCartItem();
+		int t = 0;
 		for (CartItem item : Items) {
-			cart.setGrandTotal(cart.getGrandTotal() + item.getTotalPrice());
+			t += item.getTotalPrice();
 		}
+		cart.setGrandTotal(t);
 		cart.setNoOfProducts(Items.size());
-		userDAO.saveOrUpdate(user);
+		cartItemDAO.updateCart(cart);
+		session.setAttribute("noOfCartItems", cart.getNoOfProducts());
 		return "redirect:/user/cart/viewCart?msg=" + msg;
 	}
 
 	@RequestMapping("/change")
-	public String updateCartItemQuantity(@RequestParam(value = "cartItemId") int cartItemId,
-			@RequestParam(value = "quantity") int quantity) {
+	public String updateCartItemQuantity(HttpServletRequest Id, HttpServletRequest Qnt, Principal principal) {
+		user = userDAO.getByUsername(principal.getName());
+		cart = user.getCart();
+		String id = Id.getParameter("cartItemId");
+		String qnt = Qnt.getParameter("quantity");
+		int cartItemId = Integer.parseInt(id);
+		int quantity = Integer.parseInt(qnt);
 		cartItem = cartItemDAO.getCartItem(cartItemId);
-		product = cartItem.getProduct();
-		List<CartItem> Items = cart.getCartItem();
-		if (quantity > product.getQuantity()) {
+		if (quantity > cartItem.getProduct().getQuantity()) {
 			String msg = "out of stock";
 			return "redirect:/user/cart/viewCart?msg=" + msg;
 		} else {
 			cartItem.setQuantity(quantity);
-			cartItem.setTotalPrice(quantity * product.getUnitPrice());
+			cartItem.setTotalPrice(quantity * cartItem.getProduct().getUnitPrice());
 			cartItemDAO.saveOrUpdate(cartItem);
+			user = userDAO.getByUsername(principal.getName());
+			cart = user.getCart();
+			List<CartItem> Items = cart.getCartItem();
+			int t = 0;
 			for (CartItem item : Items) {
-				cart.setGrandTotal(cart.getGrandTotal() + item.getTotalPrice());
+				t += item.getTotalPrice();
 			}
+			cart.setGrandTotal(t);
 			cart.setNoOfProducts(Items.size());
-			userDAO.saveOrUpdate(user);
+			cartItemDAO.updateCart(cart);
+			session.setAttribute("noOfCartItems", cart.getNoOfProducts());
 			return "redirect:/user/cart/viewCart";
 		}
 	}

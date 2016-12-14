@@ -86,7 +86,7 @@
 						<sec:authorize access="hasAuthority('USER')">
 							<li id="viewCart"><a id="A_viewCart"
 								href="${contextPath}/user/cart/viewCart"><span
-									class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
+									class="glyphicon glyphicon-shopping-cart"></span><span class="badge">${noOfCartItems}</span> My Cart</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"

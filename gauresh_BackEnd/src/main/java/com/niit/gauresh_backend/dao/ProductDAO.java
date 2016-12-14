@@ -19,5 +19,7 @@ public interface ProductDAO {
 	public List<Product> getByCategoryId(int categoryId);
 	
 	public List<Product> getSimilarProducts(String searchText);
+	
+	public List<Product> getLatestProducts(int n);
 
 }

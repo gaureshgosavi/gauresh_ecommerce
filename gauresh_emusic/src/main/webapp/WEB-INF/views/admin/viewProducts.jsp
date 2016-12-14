@@ -126,7 +126,7 @@
 						height="150"></td>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
-					<td>${product.unitPrice}</td>
+					<td>&#8377; ${product.unitPrice}</td>
 					<td>${product.quantity}</td>
 					<td><a
 						href="${contextPath}/admin/viewProducts/edit/${product.productId}"

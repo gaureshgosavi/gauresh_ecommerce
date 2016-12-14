@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,6 +79,16 @@ public class ProductDAOImpl implements ProductDAO{
 		String hql= "from Product where category_id="+categoryId;
 		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
+
+	@Override
+	@Transactional
+	public List<Product> getLatestProducts(int n) {
+		String hql = "FROM Product ORDER BY productId DESC";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setFirstResult(1);
+		query.setMaxResults(n);
+		return query.list();
+		}
 
 }
 

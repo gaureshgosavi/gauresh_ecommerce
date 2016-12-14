@@ -110,47 +110,19 @@
 <!-- /.container -->
 <hr>
 <div class="container">
-	<h3>TOP SELLING PRODUCTS</h3>
+	<h3>LATEST PRODUCTS...</h3><br>
 	<div class="row">
-		<div class="col-md-3 col-sm-6">
-			<img class="image-square" alt="image" src="${images}/ibanez.jpg"
-				width="170px" height="170px">
-			<h2>Ibanez ATK200 BK</h2>
-			<p>This is Guitar</p>
-			<a href="#">
-				<button class="btn btn-secondary">View Product</button>
-			</a>
-		</div>
-
-		<div class="col-md-3 col-sm-6">
-			<img class="image-square" alt="image" src="${images}/roland.jpg"
-				width="170px" height="170px">
-			<h2>Roland 76-note XP-80</h2>
-			<p>This is Keyboard</p>
-			<a href="#">
-				<button class="btn btn-secondary">View Product</button>
-			</a>
-		</div>
-
-		<div class="col-md-3 col-sm-6">
-			<img class="image-square" alt="image" src="${images}/flute.jpg"
-				width="170px" height="170px">
-			<h2>YFL-211</h2>
-			<p>This is Flute</p>
-			<a href="#">
-				<button class="btn btn-secondary">View Product</button>
-			</a>
-		</div>
-
-		<div class="col-md-3 col-sm-6">
-			<img class="image-square" alt="image" src="${images}/stagg.jpg"
-				width="170px" height="170px">
-			<h2>Stagg TIM622LBK 5-Piece Drum Set</h2>
-			<p>This is Drumkit</p>
-			<a href="#">
-				<button class="btn btn-secondary">View Product</button>
-			</a>
-		</div>
-
+		<c:forEach items="${latestProduct}" var="product">
+			<div class="col-md-3 col-sm-6 product">
+				<img src="${images}/product/${product.productId}.png"
+					class="img-square" alt="No Image Available" width="200px"
+					height="200px"><br>
+				<h4>${product.name}</h4>
+				<p>
+					<b>Price:</b> &#8377; ${product.unitPrice}
+				</p>
+				<a href="${contextPath}/product/productDetail/${product.productId}"
+					class="btn btn-success" role="button">View Product</a>
+			</div>
+		</c:forEach>
 	</div>
-</div>

@@ -96,7 +96,7 @@ public class AuthController {
 		
 		if (userDAO.getByUsername(user.getUsername()) == null) {
 
-			userRole.setRole("ADMIN");
+			userRole.setRole("USER");
 			user.setEnabled(true);
 			userRole.setUsername(user.getUsername());
 			userRole.setUser(user);

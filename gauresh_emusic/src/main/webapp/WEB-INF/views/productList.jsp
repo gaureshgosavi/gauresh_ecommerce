@@ -5,11 +5,20 @@
 		</c:when>
 		<c:otherwise>
 			<div class="row">
-				<c:if test="${!empty msg}">
-					<div class="alert alert-default" id="errorMessage">
-						<strong>${msg}</strong>
+				<c:forEach items="${productList}" var="product">
+					<div class="col-md-3 col-sm-6 product">
+						<img src="${images}/product/${product.productId}.png"
+							class="img-square" alt="No Image Available" width="200px"
+							height="200px"><br>
+						<h4>${product.name}</h4>
+						<p>
+							<b>Price:</b> &#8377; ${product.unitPrice}
+						</p>
+						<a
+							href="${contextPath}/product/productDetail/${product.productId}"
+							class="btn btn-success" role="button">View Product</a>
 					</div>
-				</c:if>
+				</c:forEach>
 			</div>
 			<!-- <div class="row">
 				<table class="table table-hover">
@@ -38,22 +47,6 @@
 					</tbody>
 				</table>
 			</div>  -->
-			<div class="container">
-				<c:forEach items="${productList}" var="product">
-					<div class="col-md-3 col-sm-6">
-						<img src="${images}/product/${product.productId}.png"
-							class="img-rounded" alt="No Image Available" width="200"
-							height="200"><br>
-						<h3>${product.name}</h3>
-						<p>
-							<b>Price:</b> &#8377; ${product.unitPrice}
-						</p>
-						<a
-							href="${contextPath}/product/productDetail/${product.productId}"
-							class="btn btn-success" role="button">View Product</a>
-					</div>
-				</c:forEach>
-			</div>
 		</c:otherwise>
 	</c:choose>
 </div>
