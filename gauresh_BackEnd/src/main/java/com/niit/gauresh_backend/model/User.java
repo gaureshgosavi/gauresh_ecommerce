@@ -34,6 +34,14 @@ public class User implements Serializable{
 	private String username;
 
 	private String password;
+	
+	//private String gender;
+	
+	/*@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_name")
+	private String lastName;*/
 
 	@Transient
 	private String confirmPassword;
@@ -44,6 +52,30 @@ public class User implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name= "cart_id")
 	private Cart cart;
+
+	/*public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}*/
+
+	/*public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}*/
 
 	public Cart getCart() {
 		return cart;

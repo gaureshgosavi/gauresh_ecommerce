@@ -2,6 +2,7 @@ package com.niit.gauresh_backend.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class PaymentDetails implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int paymentId;
 	
+	@Column(name = "user_id")
     public int userId;
 	
 	public String paymentMethod;

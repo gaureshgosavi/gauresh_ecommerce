@@ -47,7 +47,14 @@ public class Product implements Serializable {
 	@Transient
 	private MultipartFile image;
 	
+	private int count;
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public MultipartFile getImage() {
 		return image;
 	}
@@ -102,8 +109,6 @@ public class Product implements Serializable {
 				+ ", name=" + name + ", description=" + description + ", unitPrice=" + unitPrice + ", quantity="
 				+ quantity + ", image=" + image + "]";
 	}
-	
-	
 	
 	
 }

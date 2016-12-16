@@ -110,8 +110,12 @@
 <!-- /.container -->
 <hr>
 <div class="container">
-	<h3>LATEST PRODUCTS...</h3><br>
+	<h3>
+		<Strong>LATEST PRODUCTS...</Strong>
+	</h3>
+	<br>
 	<div class="row">
+
 		<c:forEach items="${latestProduct}" var="product">
 			<div class="col-md-3 col-sm-6 product">
 				<img src="${images}/product/${product.productId}.png"
@@ -126,3 +130,4 @@
 			</div>
 		</c:forEach>
 	</div>
+</div>

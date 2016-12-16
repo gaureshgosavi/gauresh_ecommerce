@@ -83,3 +83,61 @@ total_price int,
 constraint fk_cartitem_cart_cart_id foreign key (cart_id) references cart (cart_id) on delete set null,
 constraint fk_cartitem_product_product_id foreign key (product_id) references product (product_id) on delete set null
 );
+
+create table shippingaddress(
+shippingAddressId identity,
+userId int,
+line1 varchar(255),
+line2 varchar(255),
+city varchar(50),
+state varchar(50),
+country varchar(50),
+zipCode int,
+constraint fk_shippingaddress_user_id foreign key (user_id) references user (user_id) on delete set null,
+);
+
+create table billingAddress(
+billingAddressId identity,
+user_Id int,
+line1 varchar(255),
+line2 varchar(255),
+city varchar(50),
+state varchar(50),
+country varchar(50),
+zipCode int,
+constraint fk_billingAddress_user_id foreign key (user_id) references user (user_id) on delete set null,
+);
+
+create table PaymentDetails(
+paymentId identity,
+user_Id int,
+paymentMethod varchar(255),
+constraint fk_PaymentDetails_user_id foreign key (user_id) references user (user_id) on delete set null
+);
+
+create table OrderDetails(
+orderId identity,
+user_Id int,
+shippingId int,
+billingId int,
+paymentId int,
+noOfItems int,
+grandTotal int,
+constraint fk_OrderDetails_shippingId foreign key (shippingId) references shippingAddress (shippingAddressId) on delete set null
+constraint fk_OrderDetails_billingId foreign key (billingId) references billingAddress (billingAddressId) on delete set null
+constraint fk_OrderDetails_user_id foreign key (user_id) references user (user_id) on delete set null
+constraint fk_OrderDetails_paymentId foreign key (paymentId) references PaymentDetails (paymentId) on delete set null
+);
+
+create table OrderItems(
+orderItemId identity,
+orderid int,
+user_Id int,
+product_id int,
+product_name varchar(50),
+total_price int,
+quantity int,
+constraint fk_OrderItems_orderid foreign key (orderid) references OrderDetails (orderId) on delete set null,
+constraint fk_OrderItems_product_id foreign key (product_id) references Product (product_id) on delete set null,
+constraint fk_OrderItems_user_id foreign key (user_id) references user (user_id) on delete set null
+);

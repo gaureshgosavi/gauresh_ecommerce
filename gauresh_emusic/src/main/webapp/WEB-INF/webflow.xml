@@ -4,17 +4,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
 	http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
-	<var name="shippingAddress" class="com.niit.gauresh_BackEnd.model.ShippingAddress" />
-	<var name="billingAddress" class="com.niit.gauresh_BackEnd.model.BillingAddress" />
-	<var name="order" class="com.niit.gauresh_BackEnd.model.OrderReceipt" />
-	<var name="cart" class="com.niit.gauresh_BackEnd.model.Cart" />
-	<var name="paymentMethod" class="com.niit.gauresh_BackEnd.model.PaymentMethod" />
+	<var name="shippingAddress" class="com.niit.gauresh_backend.model.ShippingAddress" />
+	<var name="billingAddress" class="com.niit.gauresh_backend.model.BillingAddress" />
+	<var name="cart" class="com.niit.gauresh_backend.model.Cart" />
+	<var name="paymentDetails" class="com.niit.gauresh_backend.model.PaymentDetails" />
+	<var name="cartItem" class="com.niit.gauresh_backend.model.CartItem" />
+	<var name="checkoutTemp" class="com.niit.gauresh_backend.temp.CheckoutTemp"></var>
 
 
 	<!-- Executed when webFlow is triggered -->
 	<on-start>
 	<!-- orderWebFlow is java class available through annotated Demohandler.java class.here we are calling it’s initFlow() method. -->
-		<evaluate expression="orderWebFlow.initFlow()" result="flowScope.order" />
+		<evaluate expression="orderWebFlow.initFlow()" result="flowScope.checkoutTemp" />
 	</on-start>
 
 	<view-state id="cart_checkout" view="user/shippingAddress" model="shippingAddress">
@@ -23,7 +24,7 @@
 
 	<action-state id="shippingDetails">
 		<evaluate
-			expression="orderWebFlow.addShippingAddress(flowScope.order,shippingAddress)"></evaluate>
+			expression="orderWebFlow.addShippingAddress(flowScope.checkoutTemp,shippingAddress)"></evaluate>
 		<transition on="success" to="viewBillingDetails" />
 	</action-state>
 
@@ -34,7 +35,7 @@
 
 	<action-state id="billingDetails">
 		<evaluate
-			expression="orderWebFlow.addBillingAddress(flowScope.order,billingAddress)"></evaluate>
+			expression="orderWebFlow.addBillingAddress(flowScope.checkoutTemp,billingAddress)"></evaluate>
 		<transition on="success" to="viewPaymentDetails" />
 	</action-state>
 
@@ -45,7 +46,7 @@
 
 	<action-state id="paymentDetails">
 		<evaluate
-			expression="orderWebFlow.addPaymentMethod(flowScope.order,paymentDetails)"></evaluate>
+			expression="orderWebFlow.addPaymentMethod(flowScope.checkoutTemp,paymentDetails)"></evaluate>
 		<transition on="success" to="viewOrderReciept" />
 	</action-state>
 	
@@ -56,7 +57,7 @@
 
 	<action-state id="orderReciept">
 		<evaluate
-			expression="orderWebFlow.addPaymentMethod(flowScope.order,orderReciept)"></evaluate>
+			expression="orderWebFlow.orderReceipt(flowScope.checkoutTemp,orderReciept)"></evaluate>
 		<transition on="success" to="viewOrderConfirm" />
 	</action-state>
 

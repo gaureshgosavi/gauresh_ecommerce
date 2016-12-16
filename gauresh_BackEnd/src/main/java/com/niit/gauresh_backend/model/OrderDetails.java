@@ -1,14 +1,23 @@
 package com.niit.gauresh_backend.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
+@Table
 public class OrderDetails implements Serializable{
 
 	/**
@@ -17,30 +26,21 @@ public class OrderDetails implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int orderId;
 
+	@Column(name = "user_id")
 	private int userId;
 
 	private int shippingId;
 
 	private int billingId;
 	
-	private int cartId;
-	
 	private int paymentId;
 
 	private int noOfItems;
 	
 	private int grandTotal;
-
-	public int getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
 
 	public int getPaymentId() {
 		return paymentId;

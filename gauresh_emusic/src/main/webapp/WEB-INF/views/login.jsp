@@ -13,7 +13,7 @@
 					<form action="${contextPath}/login" id="login-form" method="post"
 						role="form-vertical">
 						<div class="form-group">
-							<label for="username">User Name</label> <input type="text"
+							<label for="username">Username/Email</label> <input type="text"
 								name="username" id="username" class="form-control"
 								placeholder="Username" required="true" />
 						</div>
@@ -22,10 +22,6 @@
 								name="password" id="password" class="form-control"
 								placeholder="Password" required="true" />
 						</div>
-						<div class="form-group text-center">
-							<input type="checkbox" class="" name="remember" id="remember">
-							<label for="remember">Keep me logged in</label>
-						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-sm-6 col-sm-offset-3">
@@ -33,6 +29,12 @@
 										id="login-submit" name="submit">Login</button>
 								</div>
 							</div>
+						</div>
+						<div class="form-group text-right">
+							<p>
+								Don't have account?<a href="${contextPath}/register"
+									class="btn btn-link" role="button">Sign Up here.</a>
+							</p>
 						</div>
 					</form>
 				</div>

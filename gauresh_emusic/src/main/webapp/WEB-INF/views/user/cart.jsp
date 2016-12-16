@@ -11,6 +11,11 @@
 			<fieldset>
 				<legend>My Cart</legend>
 				<p>Here you can see your wishlist...</p>
+				<c:if test="${!empty outOfStock}">
+					<div class="alert alert-warning">
+						<strong>${outOfStock}</strong>
+					</div>
+				</c:if>
 				<div class="row">
 					<table class="table table-hover">
 						<thead>
@@ -37,7 +42,8 @@
 										href="${contextPath}/user/cart/change" class="btn btn-warning"
 										role="button"><span class="glyphicon glyphicon-pencil"></span>
 											Change</a></td> -->
-									<td><form action="${contextPath}/user/cart/change" method="post">
+									<td><form action="${contextPath}/user/cart/change"
+											method="post">
 											<input type="hidden" value="${item.cartItemId}"
 												name="cartItemId" /> <input type="number"
 												value="${item.quantity}" name="quantity" min="1" max="5"

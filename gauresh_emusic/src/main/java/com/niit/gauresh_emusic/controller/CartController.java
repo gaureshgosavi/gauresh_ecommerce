@@ -59,8 +59,8 @@ public class CartController {
 				model.addAttribute("addfailure", "Failed to add the product to the cart.");
 			} else if (msg.equals("removefailure")) {
 				model.addAttribute("removefailure", "Failed to remove item from the cart");
-			} else if (msg.equals("out of stock")) {
-				model.addAttribute("out of stock",
+			} else if (msg.equals("outOfStock")) {
+				model.addAttribute("outOfStock",
 						"Sorry, Quantity of product you are trying to update is unavailable in our stock");
 			}
 		}
@@ -207,7 +207,7 @@ public class CartController {
 		int quantity = Integer.parseInt(qnt);
 		cartItem = cartItemDAO.getCartItem(cartItemId);
 		if (quantity > cartItem.getProduct().getQuantity()) {
-			String msg = "out of stock";
+			String msg = "outOfStock";
 			return "redirect:/user/cart/viewCart?msg=" + msg;
 		} else {
 			cartItem.setQuantity(quantity);

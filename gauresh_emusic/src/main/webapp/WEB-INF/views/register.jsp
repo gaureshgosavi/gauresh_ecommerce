@@ -18,8 +18,9 @@
 
 					<form:form method="post" action="${contextPath}/register"
 						modelAttribute="user" cssClass="form-vertical">
+
 						<div class="form-group">
-							<label for="username">Email</label>
+							<label for="username">Email/Username</label>
 							<form:input path="username" type="email" id="username"
 								cssClass="form-control" placeholder="Username" required="true" />
 						</div>
@@ -42,6 +43,12 @@
 										class="form-control btn btn-success">Register</button>
 								</div>
 							</div>
+						</div>
+						<div class="form-group text-right">
+							<p>
+								Already registered?<a href="${contextPath}/login"
+									class="btn btn-link account" role="button">Login here.</a>
+							</p>
 						</div>
 					</form:form>
 				</div>

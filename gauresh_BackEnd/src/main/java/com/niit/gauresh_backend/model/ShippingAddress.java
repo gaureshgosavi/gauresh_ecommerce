@@ -2,6 +2,7 @@ package com.niit.gauresh_backend.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +22,10 @@ public class ShippingAddress implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int shippingAddressId;
 	
+	@Column(name = "user_id")
 	private int userId;
 
 	private String line1;
@@ -39,11 +41,11 @@ public class ShippingAddress implements Serializable{
 	private int zipCode;
 
 
-	public int getBillingAddressId() {
+	public int getShippingAddressId() {
 		return shippingAddressId;
 	}
 
-	public void setBillingAddressId(int shippingAddressId) {
+	public void setShippingAddressId(int shippingAddressId) {
 		this.shippingAddressId = shippingAddressId;
 	}
 
@@ -102,5 +104,4 @@ public class ShippingAddress implements Serializable{
 	public void setZipCode(int zipCode) {
 		this.zipCode = zipCode;
 	}
-	
 }

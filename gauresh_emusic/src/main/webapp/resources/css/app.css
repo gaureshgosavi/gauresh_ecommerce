@@ -6,8 +6,18 @@ body{
 }
 .footer{
 	font-size: 0.75em;
+	width : 90%;
+	position : fixed;
+	bottom : 0px;
 }
 
 .product{
 	min-height: 350px;
 }
+
+.account{
+	color : green;
+}
+/* .ship{
+	color : blue;
+} */
