@@ -35,20 +35,10 @@ public class OrderDetails implements Serializable{
 	private int shippingId;
 
 	private int billingId;
-	
-	private int paymentId;
 
 	private int noOfItems;
 	
 	private int grandTotal;
-
-	public int getPaymentId() {
-		return paymentId;
-	}
-
-	public void setPaymentId(int paymentId) {
-		this.paymentId = paymentId;
-	}
 
 	public int getOrderId() {
 		return orderId;

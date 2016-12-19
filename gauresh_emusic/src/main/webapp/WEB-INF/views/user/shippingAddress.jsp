@@ -16,6 +16,7 @@
 <%@include file="../shared/header.jsp"%>
 </head>
 <body>
+	<%@include file="../shared/webflowbar.jsp"%>
 	<div class="container">
 		<div class="row">
 
@@ -23,9 +24,8 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Shipping Address</div>
 					<div class="panel-body ship">
-						<form:form method="post"
-							action="${contextPath}/user/shippingAddress"
-							cssClass="form-vertical" modelAttribute="shippingAddress">
+						<form:form method="post" cssClass="form-vertical"
+							modelAttribute="shippingAddress">
 							<div class="form-group">
 								<label for="line1">Line 1</label>
 

@@ -35,6 +35,9 @@ public class OrderItems implements Serializable{
 	@Column(name="product_name")
 	private String productName;
 	
+	@Column(name="unit_price")
+	private int unitPrice;
+	
 	@Column(name="total_price")
 	private int totalPrice;
 	
@@ -42,6 +45,12 @@ public class OrderItems implements Serializable{
 	
 	private int quantity;
 	
+	public int getUnitPrice() {
+		return unitPrice;
+	}
+	public void setUnitPrice(int unitPrice) {
+		this.unitPrice = unitPrice;
+	}
 	public String getProductName() {
 		return productName;
 	}

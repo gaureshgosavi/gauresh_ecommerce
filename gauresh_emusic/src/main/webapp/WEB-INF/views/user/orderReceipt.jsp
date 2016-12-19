@@ -16,6 +16,7 @@
 <%@include file="../shared/header.jsp"%>
 </head>
 <body>
+	<%@include file="../shared/webflowbar.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
@@ -25,21 +26,23 @@
 			<div class="col-md-6">
 				<h3>Emu$ic</h3>
 				<br>
-				<p>Address:</p>
+				<p>
+					<b>Address:</b> NIIT,<br>Near Ghatkopar Stn.,<br>Ghatkopar(E),<br>Mumbai-400092.
+				</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<p align="center">
 					<mark>
-						<b>Email:</b>
+						<b>Email: gauresh@emusic.com</b>
 					</mark>
 				</p>
 			</div>
 			<div class="col-md-6">
 				<p align="center">
 					<mark>
-						<b>Contact No:</b>
+						<b>Contact No: 1800 9898 206/1800 9898 209</b>
 					</mark>
 				</p>
 			</div>
@@ -50,15 +53,23 @@
 				<br>
 				<p>
 					<b>Name:</b> <br> <b>Email:</b> <br> <b>Contact No:</b> <br>
-					<b>Billing Address:</b>
+					<b>Billing Address:</b> ${checkoutTemp.billingAddress.line1}, <br />
+					${checkoutTemp.billingAddress.line2},<br>${checkoutTemp.billingAddress.city},
+					<br>${checkoutTemp.billingAddress.state},<br>
+					${checkoutTemp.billingAddress.country}-${checkoutTemp.billingAddress.zipCode}.<br>
+
 				</p>
 			</div>
 			<div class="col-md-6">
 				<h3>Payment Information</h3>
 				<br>
 				<p>
-					<b>Total Amount:</b> <br> <b>Payment Status:</b> <br> <b>Payment
-						Method:</b> <br> <b>Shipping Address:</b>
+					<b>Total Amount:</b>${orderDetails.grandTotal} <br> <b>Payment
+						Status:</b> Done. <br> <b>Shipping Address:</b>
+					${checkoutTemp.shippingAddress.line1}, <br />
+					${checkoutTemp.shippingAddress.line2},<br>${checkoutTemp.shippingAddress.city},
+					<br>${checkoutTemp.shippingAddress.state},<br>
+					${checkoutTemp.shippingAddress.country}-${checkoutTemp.shippingAddress.zipCode}.<br>
 				</p>
 			</div>
 		</div>
@@ -75,16 +86,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td colspan="3" align="right">Grand Total</td>
-							<td></td>
-						</tr>
+						<c:forEach items="${orderItems}" var="item">
+							<tr>
+								<td>${item.productName}</td>
+								<td>item.</td>
+								<td>${item.quantity}</td>
+								<td>${item.totalPrice}</td>
+							</tr>
+							<tr>
+								<td colspan="3" align="right">Grand Total</td>
+								<td>${orderDetails.grandTotal}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -92,9 +105,9 @@
 		<div class="row">
 			<input type="submit" name="_eventId_cancel"
 				class="btn btn-md btn-danger" value="Cancel"> <input
-				type="submit" name="_eventId_submitConfirmCheckout"
+				type="submit" name="_eventId_finalHome"
 				class="pull-right" class="btn btn-md btn-success"
-				value="Place Order">
+				value="Continue shopping...">
 		</div>
 	</div>
 	<%@include file="../shared/footer.jsp"%>

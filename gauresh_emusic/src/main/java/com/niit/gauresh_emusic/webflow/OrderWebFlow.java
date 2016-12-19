@@ -35,12 +35,6 @@ public class OrderWebFlow {
 	private ProductDAO productDAO;
 
 	@Autowired
-	private ShippingAddress shippingAddress;
-
-	@Autowired
-	private BillingAddress billingAddress;
-
-	@Autowired
 	private OrderDetails orderDetails;
 
 	@Autowired
@@ -52,23 +46,10 @@ public class OrderWebFlow {
 	@Autowired
 	private OrderDetailsDAO orderDetailsDAO;
 
-	@Autowired
-	private User user;
-
-	@Autowired
-	private Cart cart;
 
 	@Autowired
 	private UserDAO userDAO;
 
-	@Autowired
-	private Product product;
-
-	@Autowired
-	private PaymentDetails paymentDetails;
-
-	@Autowired
-	private PaymentDetailsDAO paymentDetailsDAO;
 
 	@Autowired
 	private OrderItemsDAO orderItemsDAO;
@@ -79,11 +60,12 @@ public class OrderWebFlow {
 	@Autowired
 	private HttpSession session;
 
-	CheckoutTemp checkoutTemp = new CheckoutTemp();
+	CheckoutTemp checkoutTemp = null;
 
 	public CheckoutTemp initFlow() {
-		user = userDAO.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		cart = user.getCart();
+		checkoutTemp = new CheckoutTemp();
+		User user = userDAO.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		Cart cart = user.getCart();
 		checkoutTemp.setUser(user);
 		checkoutTemp.setCart(cart);
 		return checkoutTemp;
@@ -91,50 +73,49 @@ public class OrderWebFlow {
 
 	public String addShippingAddress(CheckoutTemp checkoutTemp, ShippingAddress shippingAddress) {
 		System.out.println(shippingAddress.toString());
-		user = userDAO.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		System.out.println(user.toString());
-		shippingAddress.setUserId(user.getUserId());
+		shippingAddress.setUserId(checkoutTemp.getUser().getUserId());
 		checkoutTemp.setShippingAddress(shippingAddress);
 		return "success";
 	}
 
 	public String addBillingAddress(CheckoutTemp checkoutTemp, BillingAddress billingAddress) {
 		System.out.println(billingAddress.toString());
-		user = userDAO.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		System.out.println(user.toString());
-		billingAddress.setUserId(user.getUserId());
+		billingAddress.setUserId(checkoutTemp.getUser().getUserId());
 		checkoutTemp.setBillingAddress(billingAddress);
 		return "success";
 	}
 
-	public String paymentDetails(CheckoutTemp checkoutTemp, PaymentDetails paymentDetails) {
-		System.out.println(paymentDetails.toString());
+	public String addPaymentMethod(CheckoutTemp checkoutTemp) {
+		/*System.out.println(paymentDetails.toString());
 		user = userDAO.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		System.out.println(user.toString());
 		paymentDetails.setUserId(user.getUserId());
-		checkoutTemp.setPaymentDetails(paymentDetails);
+		checkoutTemp.setPaymentDetails(paymentDetails);*/
+		addOrderDetails(checkoutTemp);
 		return "success";
 	}
 
-	public String orderDetails(CheckoutTemp checkoutTemp, OrderDetails orderDetails) {
+	public String addOrderDetails(CheckoutTemp checkoutTemp) {
 		
 		System.out.println(orderDetails.toString());
-		user = userDAO.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		User user = checkoutTemp.getUser();
 		System.out.println(user.toString());
-		cart = user.getCart();
+		Cart cart = user.getCart();
 		
 		shippingAddressDAO.saveOrUpdate(checkoutTemp.getShippingAddress());
 		billingAddressDAO.saveOrUpdate(checkoutTemp.getBillingAddress());
-		paymentDetailsDAO.saveOrUpdate(checkoutTemp.getPaymentDetails());
+		//paymentDetailsDAO.saveOrUpdate(checkoutTemp.getPaymentDetails());
 		
-		orderDetails.setShippingId(shippingAddress.getShippingAddressId());
-		orderDetails.setBillingId(billingAddress.getBillingAddressId());
-		orderDetails.setPaymentId(paymentDetails.getPaymentId());
+		orderDetails.setShippingId(checkoutTemp.getShippingAddress().getShippingAddressId());
+		orderDetails.setBillingId(checkoutTemp.getBillingAddress().getBillingAddressId());
+		//orderDetails.setPaymentId(paymentDetails.getPaymentId());
 		orderDetails.setUserId(user.getUserId());
 		orderDetails.setGrandTotal(cart.getGrandTotal());
 		orderDetails.setNoOfItems(cart.getNoOfProducts());
 		orderDetailsDAO.saveOrUpdate(orderDetails);
 
+		Product product = null;
+		
 		List<CartItem> CartItems = cartItemDAO.listCartItems(cart.getCartId());
 
 		for (CartItem item : CartItems) {
@@ -154,7 +135,9 @@ public class OrderWebFlow {
 			orderItems.setUserId(user.getUserId());
 			orderItems.setProductName(item.getProduct().getName());
 			orderItems.setProductId(item.getProduct().getProductId());
+			orderItems.setUnitPrice(item.getProduct().getUnitPrice());
 			orderItems.setQuantity(item.getQuantity());
+			orderItems.setOrderId(orderDetails.getOrderId());
 			orderItems.setTotalPrice(item.getTotalPrice());
 			product = productDAO.get(item.getProduct().getProductId());
 			int q = product.getCount();
@@ -168,10 +151,6 @@ public class OrderWebFlow {
 		cart.setNoOfProducts(0);
 		cartItemDAO.updateCart(cart);
 		session.setAttribute("noOfCartItems", cart.getNoOfProducts());
-		return "success";
-	}
-
-	public String orderReceipt() {
 		return "success";
 	}
 

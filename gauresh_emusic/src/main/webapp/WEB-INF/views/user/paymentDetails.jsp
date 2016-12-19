@@ -16,14 +16,15 @@
 <%@include file="../shared/header.jsp"%>
 </head>
 <body>
+	<%@include file="../shared/webflowbar.jsp"%>
 	<div class="container">
 		<div class="row">
 
 			<div class="col-md-6 col-md-offset-3">
-				<div class="panel panel-success">
+				<div class="panel panel-primary">
 					<div class="panel-heading">Payment Method</div>
-					<p>Please select your payment method...</p>
 					<div class="panel-body">
+						<p>Please select your payment method...</p>
 						<ul class="nav nav-pills">
 							<li class="active"><a data-toggle="pill" href="#home">Cash
 									On Delivery</a></li>
@@ -44,7 +45,7 @@
 							</div>
 							<div id="credit" class="tab-pane fade">
 								<div class="jumbotron">
-									<form id="credit-Details" role="form-horizontal">
+									<form id="credit-Details" role="form-horizontal" method="post">
 										<div class="form-group">
 											<input type="text" name="cardNo" id="cardNo"
 												class="form-control" placeholder="Card Number" required />
@@ -56,7 +57,7 @@
 											</div>
 											<div class="col-md-6">
 												<input type="submit" class="btn btn-default" value="CVV"
-													size="5" disabled>
+													size="5" disabled />
 											</div>
 										</div>
 										<div class="form-group">
@@ -69,9 +70,9 @@
 											<div class="row">
 												<div class="col-sm-6 col-sm-offset-3">
 													<input type="submit" name="_eventId_submitPaymentDetails"
-														class="btn btn-primary" value="Confirm Order"><input
+														class="btn btn-primary" value="Confirm Order" /> <input
 														type="submit" name="_eventId_cancel"
-														class="btn btn-md btn-danger" value="Cancel">
+														class="btn btn-md btn-danger" value="Cancel" />
 												</div>
 											</div>
 										</div>
@@ -80,7 +81,7 @@
 							</div>
 							<div id="debit" class="tab-pane fade">
 								<div class="jumbotron">
-									<form id="debit-Details" role="form-horizontal">
+									<form id="debit-Details" role="form-horizontal" method="post">
 										<div class="form-group">
 											<input type="text" name="ifscNo" id="ifscNo"
 												class="form-control" placeholder="IFSCode" required="true" />

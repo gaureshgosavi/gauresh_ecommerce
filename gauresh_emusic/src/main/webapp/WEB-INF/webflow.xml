@@ -14,11 +14,13 @@
 
 	<!-- Executed when webFlow is triggered -->
 	<on-start>
-	<!-- orderWebFlow is java class available through annotated Demohandler.java class.here we are calling it’s initFlow() method. -->
+		<!-- orderWebFlow is java class available through annotated Demohandler.java 
+			class.here we are calling it’s initFlow() method. -->
 		<evaluate expression="orderWebFlow.initFlow()" result="flowScope.checkoutTemp" />
 	</on-start>
 
-	<view-state id="cart_checkout" view="user/shippingAddress" model="shippingAddress">
+	<view-state id="cart_checkout" view="user/shippingAddress"
+		model="shippingAddress">
 		<transition on="submitShippingAddress" to="shippingDetails" />
 	</view-state>
 
@@ -39,31 +41,30 @@
 		<transition on="success" to="viewPaymentDetails" />
 	</action-state>
 
-	<view-state id="viewPaymentDetails" view="cart/paymentDetails"
+	<view-state id="viewPaymentDetails" view="user/paymentDetails"
 		model="paymentDetails">
 		<transition on="submitPaymentDetails" to="paymentDetails" />
 	</view-state>
 
 	<action-state id="paymentDetails">
-		<evaluate
-			expression="orderWebFlow.addPaymentMethod(flowScope.checkoutTemp,paymentDetails)"></evaluate>
-		<transition on="success" to="viewOrderReciept" />
+		<evaluate expression="orderWebFlow.addPaymentMethod(flowScope.checkoutTemp)"></evaluate>
+		<transition on="success" to="viewOrderReceipt" />
 	</action-state>
-	
-	<view-state id="viewOrderReciept" view="cart/orderReciept"
-		model="orderReciept">
-		<transition on="submitConfirmCheckout" to="orderReciept" />
+
+	<view-state id="viewOrderReceipt" view="user/orderReceipt"
+		model="orderReceipt">
+		<transition on="finalHome" to="toHome" />
 	</view-state>
 
-	<action-state id="orderReciept">
+<!-- 	<action-state id="orderReceipt">
 		<evaluate
-			expression="orderWebFlow.orderReceipt(flowScope.checkoutTemp,orderReciept)"></evaluate>
+			expression="orderWebFlow.orderReceipt(flowScope.checkoutTemp,orderReceipt)"></evaluate>
 		<transition on="success" to="viewOrderConfirm" />
 	</action-state>
 
-	<view-state id="viewOrderConfirm" view="cart/orderConfirmed">
+	<view-state id="viewOrderConfirm" view="user/orderConfirmed">
 		<transition on="finalHome" to="toHome" />
-	</view-state>
+	</view-state> -->
 
 	<end-state id="toHome" view="externalRedirect:contextRelative:/index" />
 
