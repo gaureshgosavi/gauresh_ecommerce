@@ -21,5 +21,7 @@ public interface ProductDAO {
 	public List<Product> getSimilarProducts(String searchText);
 	
 	public List<Product> getLatestProducts(int n);
+	
+	public List<Product> getTopProduct(int n);
 
 }

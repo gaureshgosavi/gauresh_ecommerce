@@ -1,11 +1,13 @@
 package com.niit.gauresh_backend.temp;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.niit.gauresh_backend.model.BillingAddress;
 import com.niit.gauresh_backend.model.Cart;
 import com.niit.gauresh_backend.model.CartItem;
 import com.niit.gauresh_backend.model.OrderDetails;
+import com.niit.gauresh_backend.model.OrderItems;
 import com.niit.gauresh_backend.model.PaymentDetails;
 import com.niit.gauresh_backend.model.ShippingAddress;
 import com.niit.gauresh_backend.model.User;
@@ -21,10 +23,17 @@ public class CheckoutTemp  implements Serializable{
 	private BillingAddress billingAddress;
 	private PaymentDetails paymentDetails;
 	private OrderDetails orderDetails;
+	private List<OrderItems> orderItems;
 	private Cart cart;
 	private CartItem cartItem;
 	private User user;
 	
+	public List<OrderItems> getOrderItems() {
+		return orderItems;
+	}
+	public void setOrderItems(List<OrderItems> orderItems) {
+		this.orderItems = orderItems;
+	}
 	public ShippingAddress getShippingAddress() {
 		return shippingAddress;
 	}

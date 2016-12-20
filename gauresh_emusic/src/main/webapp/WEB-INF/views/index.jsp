@@ -111,6 +111,29 @@
 <hr>
 <div class="container">
 	<h3>
+		<Strong>TOP SELLING PRODUCTS...</Strong>
+	</h3>
+	<br>
+	<div class="row">
+
+		<c:forEach items="${topProducts}" var="product">
+			<div class="col-md-3 col-sm-6 product">
+				<img src="${images}/product/${product.productId}.png"
+					class="img-square" alt="No Image Available" width="200px"
+					height="200px"><br>
+				<h4>${product.name}</h4>
+				<p>
+					<b>Price:</b> &#8377; ${product.unitPrice}
+				</p>
+				<a href="${contextPath}/product/productDetail/${product.productId}"
+					class="btn btn-success" role="button">View Product</a>
+			</div>
+		</c:forEach>
+	</div>
+</div>
+<hr>
+<div class="container">
+	<h3>
 		<Strong>LATEST PRODUCTS...</Strong>
 	</h3>
 	<br>

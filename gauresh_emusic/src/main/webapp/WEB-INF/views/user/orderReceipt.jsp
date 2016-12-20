@@ -52,8 +52,8 @@
 				<h3>Client Information</h3>
 				<br>
 				<p>
-					<b>Name:</b> <br> <b>Email:</b> <br> <b>Contact No:</b> <br>
-					<b>Billing Address:</b> ${checkoutTemp.billingAddress.line1}, <br />
+					<b>Email: ${checkoutTemp.user.username}</b> <br> <b>Billing
+						Address:</b> ${checkoutTemp.billingAddress.line1}, <br />
 					${checkoutTemp.billingAddress.line2},<br>${checkoutTemp.billingAddress.city},
 					<br>${checkoutTemp.billingAddress.state},<br>
 					${checkoutTemp.billingAddress.country}-${checkoutTemp.billingAddress.zipCode}.<br>
@@ -64,13 +64,15 @@
 				<h3>Payment Information</h3>
 				<br>
 				<p>
-					<b>Total Amount:</b>${orderDetails.grandTotal} <br> <b>Payment
-						Status:</b> Done. <br> <b>Shipping Address:</b>
-					${checkoutTemp.shippingAddress.line1}, <br />
-					${checkoutTemp.shippingAddress.line2},<br>${checkoutTemp.shippingAddress.city},
-					<br>${checkoutTemp.shippingAddress.state},<br>
-					${checkoutTemp.shippingAddress.country}-${checkoutTemp.shippingAddress.zipCode}.<br>
-				</p>
+					<h5><b>ORDER ID</b>: ORD${checkoutTemp.orderDetails.orderId}</h5>
+				<b>Total Amount:</b> &#8377;
+				${checkoutTemp.orderDetails.grandTotal}/- <br> <b>Payment
+					Status:</b> Done. <br> <b>Shipping Address:</b>
+				${checkoutTemp.shippingAddress.line1}, <br />
+				${checkoutTemp.shippingAddress.line2},<br>${checkoutTemp.shippingAddress.city},
+				<br>${checkoutTemp.shippingAddress.state},<br>
+				${checkoutTemp.shippingAddress.country}-${checkoutTemp.shippingAddress.zipCode}.<br>
+				</P>
 			</div>
 		</div>
 		<div class="row">
@@ -86,28 +88,39 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${orderItems}" var="item">
+						<c:forEach items="${checkoutTemp.orderDetails.orderItems}"
+							var="item">
 							<tr>
 								<td>${item.productName}</td>
-								<td>item.</td>
+								<td>&#8377; ${item.unitPrice}/-</td>
 								<td>${item.quantity}</td>
-								<td>${item.totalPrice}</td>
+								<td>&#8377; ${item.totalPrice}/-</td>
 							</tr>
-							<tr>
-								<td colspan="3" align="right">Grand Total</td>
-								<td>${orderDetails.grandTotal}</td>
-							</tr>
+
 						</c:forEach>
+						<tr>
+							<td colspan="3" align="right">Grand Total</td>
+							<td>&#8377; ${checkoutTemp.orderDetails.grandTotal}/-</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<div class="row">
-			<input type="submit" name="_eventId_cancel"
-				class="btn btn-md btn-danger" value="Cancel"> <input
-				type="submit" name="_eventId_finalHome"
-				class="pull-right" class="btn btn-md btn-success"
-				value="Continue shopping...">
+			<div align="center">
+				<img src="${images}/thankyou.jpg" class="img-rounded" alt="ThankYou"
+					width="304" height="236">
+			</div>
+			<h3 align="center">You will receive your order within six days.</h3>
+			<p align="center">Keep Visiting</p>
+		</div>
+		<div class="row">
+			<form id="orderReceipt" role="form-horizontal" method="post">
+				<div class="form-group">
+					<input type="submit" name="_eventId_finalHome"
+						class="btn btn-md btn-success" value="Continue shopping...">
+				</div>
+			</form>
 		</div>
 	</div>
 	<%@include file="../shared/footer.jsp"%>

@@ -67,9 +67,12 @@
 					<a href="${contextPath}/user/cart/remove/all"
 						class="btn btn-danger" role="button"> Remove All</a> <a
 						href="${contextPath}/product/allProducts" class="btn btn-success"
-						role="button"> Continue Shopping...</a> <a class="pull-right"
-						href="${contextPath}/cart_checkout" class="btn btn-success"
-						role="button"> Checkout</a>
+						role="button"> Continue Shopping...</a> 
+						<span class="pull-right">
+							<a 
+							href="${contextPath}/cart_checkout" class="btn btn-success"
+							role="button"> Checkout</a>						
+						</span>
 				</div>
 			</fieldset>
 		</c:otherwise>

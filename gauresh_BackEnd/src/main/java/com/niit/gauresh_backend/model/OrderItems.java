@@ -41,10 +41,18 @@ public class OrderItems implements Serializable{
 	@Column(name="total_price")
 	private int totalPrice;
 	
-	private int orderId;
-	
 	private int quantity;
 	
+	@ManyToOne
+	@JoinColumn(name="orderid")
+	private OrderDetails orderDetails;
+	
+	public OrderDetails getOrderDetails() {
+		return orderDetails;
+	}
+	public void setOrderDetails(OrderDetails orderDetails) {
+		this.orderDetails = orderDetails;
+	}
 	public int getUnitPrice() {
 		return unitPrice;
 	}
@@ -56,13 +64,6 @@ public class OrderItems implements Serializable{
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-	
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
 	}
 	public int getOrderedItemId() {
 		return orderItemId;

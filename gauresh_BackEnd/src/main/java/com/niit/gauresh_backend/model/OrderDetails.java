@@ -39,6 +39,17 @@ public class OrderDetails implements Serializable{
 	private int noOfItems;
 	
 	private int grandTotal;
+	
+	@OneToMany(mappedBy="orderDetails",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	private List<OrderItems> orderItems;
+
+	public List<OrderItems> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItems> orderItems) {
+		this.orderItems = orderItems;
+	}
 
 	public int getOrderId() {
 		return orderId;

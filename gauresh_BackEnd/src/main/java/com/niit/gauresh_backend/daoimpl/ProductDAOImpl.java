@@ -13,7 +13,7 @@ import com.niit.gauresh_backend.dao.ProductDAO;
 import com.niit.gauresh_backend.model.Product;
 
 @Repository
-public class ProductDAOImpl implements ProductDAO{
+public class ProductDAOImpl implements ProductDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -69,14 +69,14 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	@Transactional
 	public List<Product> getSimilarProducts(String searchText) {
-		String hql= "from Product where name like %"+ searchText+"%";
+		String hql = "from Product where name like %" + searchText + "%";
 		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 
 	@Override
 	@Transactional
 	public List<Product> getByCategoryId(int categoryId) {
-		String hql= "from Product where category_id="+categoryId;
+		String hql = "from Product where category_id=" + categoryId;
 		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 
@@ -88,8 +88,16 @@ public class ProductDAOImpl implements ProductDAO{
 		query.setFirstResult(1);
 		query.setMaxResults(n);
 		return query.list();
-		}
+	}
+
+	@Override
+	@Transactional
+	public List<Product> getTopProduct(int n) {
+		String hql = "FROM Product ORDER BY stock DESC";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setFirstResult(1);
+		query.setMaxResults(n);
+		return query.list();
+	}
 
 }
-
-

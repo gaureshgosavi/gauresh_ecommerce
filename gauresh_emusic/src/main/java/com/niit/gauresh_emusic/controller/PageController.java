@@ -24,22 +24,22 @@ public class PageController {
 
 	@Autowired
 	private Category category;
-	
+
 	@Autowired
 	private Product product;
-	
+
 	@Autowired
 	private ProductDAO productDAO;
 
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private User user;
-	
+
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	private Cart cart;
 
@@ -52,12 +52,14 @@ public class PageController {
 		List<Category> categoryList = categoryDAO.list();
 		if (session.getAttribute("categoryList") == null)
 			session.setAttribute("categoryList", categoryList);
-		if(principal != null){
+		if (principal != null) {
 			user = userDAO.getByUsername(principal.getName());
 			session.setAttribute("noOfCartItems", user.getCart().getNoOfProducts());
 		}
 		List<Product> latestProduct = productDAO.getLatestProducts(4);
 		mv.addObject("latestProduct", latestProduct);
+		List<Product> topProducts = productDAO.getTopProduct(4);
+		mv.addObject("topProducts", topProducts);
 		mv.addObject("ifUserClickedHome", true);
 		mv.addObject("title", "index");
 		return mv;
@@ -95,20 +97,16 @@ public class PageController {
 		return mv;
 	}
 
-	/*@RequestMapping(value = "/productList")
-	public ModelAndView product() {
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("ifUserClickedProduct", true);
-		mv.addObject("title", "product");
-		return mv;
-	}
-
-	@RequestMapping(value = "/productDetail")
-	public ModelAndView productDetail() {
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("ifUserClickedProductDetail", true);
-		mv.addObject("title", "productDetail");
-		return mv;
-	}*/
+	/*
+	 * @RequestMapping(value = "/productList") public ModelAndView product() {
+	 * ModelAndView mv = new ModelAndView("page");
+	 * mv.addObject("ifUserClickedProduct", true); mv.addObject("title",
+	 * "product"); return mv; }
+	 * 
+	 * @RequestMapping(value = "/productDetail") public ModelAndView
+	 * productDetail() { ModelAndView mv = new ModelAndView("page");
+	 * mv.addObject("ifUserClickedProductDetail", true); mv.addObject("title",
+	 * "productDetail"); return mv; }
+	 */
 
 }

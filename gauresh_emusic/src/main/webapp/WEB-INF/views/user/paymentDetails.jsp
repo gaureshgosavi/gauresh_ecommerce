@@ -35,13 +35,19 @@
 
 						<div class="tab-content">
 							<div id="home" class="tab-pane fade in active">
-								<input type="submit" class="btn btn-default" value="@es$KF&z"
-									size="30" disabled><br> <input type="text"
-									value="Please write above string" size="30"><br> <input
-									type="submit" name="_eventId_submitPaymentDetails"
-									class="btn btn-success" value="Confirm Order"> <input
-									type="submit" name="_eventId_cancel"
-									class="btn btn-md btn-danger" value="Cancel">
+								<form id="cod" role="form-horizontal" method="post">
+									<div class="form-group">
+										<input type="submit" class="btn btn-default" value="@es$KF&z"
+											size="30" disabled> <input type="text"
+											value="Please write above string" size="30">
+									</div>
+									<div class="form-group">
+										<input type="submit" name="_eventId_submitPaymentDetails"
+											class="btn btn-success" value="Confirm Order"> <input
+											type="submit" name="_eventId_cancel"
+											class="btn btn-md btn-danger" value="Cancel">
+									</div>
+								</form>
 							</div>
 							<div id="credit" class="tab-pane fade">
 								<div class="jumbotron">
@@ -106,13 +112,19 @@
 								</div>
 							</div>
 							<div id="cod" class="tab-pane fade">
-								<input type="submit" class="btn btn-default" value="@es$KF&z"
-									size="30" disabled><br> <input type="text"
-									value="Please write above string" size="30"><br> <input
-									type="submit" name="_eventId_submitPaymentDetails"
-									class="btn btn-success" value="submitPaymentDetails"> <input
-									type="submit" name="_eventId_cancel"
-									class="btn btn-md btn-danger" value="Cancel">
+								<form id="cod" role="form-horizontal" method="post">
+									<div class="form-group">
+										<input type="submit" class="btn btn-default" value="@es$KF&z"
+											size="30" disabled><input type="text"
+											value="Please write above string" size="30">
+									</div>
+									<div class="form-group">
+										<input type="submit" name="_eventId_submitPaymentDetails"
+											class="btn btn-success" value="submitPaymentDetails">
+										<input type="submit" name="_eventId_cancel"
+											class="btn btn-md btn-danger" value="Cancel">
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -123,6 +135,5 @@
 	<%@include file="../shared/footer.jsp"%>
 	<script src="${js}/jquery.js"></script>
 	<script src="${js}/bootstrap.js"></script>
-
 </body>
 </html>

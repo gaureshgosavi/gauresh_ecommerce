@@ -47,13 +47,14 @@ public class Product implements Serializable {
 	@Transient
 	private MultipartFile image;
 	
-	private int count;
+	@Column(name="count")
+	private int stock;
 	
-	public int getCount() {
-		return count;
+	public int getStock() {
+		return stock;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setStock(int count) {
+		this.stock = count;
 	}
 	public MultipartFile getImage() {
 		return image;

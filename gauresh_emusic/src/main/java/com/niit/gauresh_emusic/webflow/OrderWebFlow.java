@@ -1,6 +1,7 @@
 package com.niit.gauresh_emusic.webflow;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -113,11 +114,16 @@ public class OrderWebFlow {
 		orderDetails.setGrandTotal(cart.getGrandTotal());
 		orderDetails.setNoOfItems(cart.getNoOfProducts());
 		orderDetailsDAO.saveOrUpdate(orderDetails);
+		
+		cart.setGrandTotal(0);
+		cart.setNoOfProducts(0);
+		cartItemDAO.updateCart(cart);
+		session.setAttribute("noOfCartItems", 0);
 
 		Product product = null;
 		
 		List<CartItem> CartItems = cartItemDAO.listCartItems(cart.getCartId());
-
+		List<OrderItems> Items = new ArrayList<>();
 		for (CartItem item : CartItems) {
 
 			product = item.getProduct();
@@ -137,20 +143,24 @@ public class OrderWebFlow {
 			orderItems.setProductId(item.getProduct().getProductId());
 			orderItems.setUnitPrice(item.getProduct().getUnitPrice());
 			orderItems.setQuantity(item.getQuantity());
-			orderItems.setOrderId(orderDetails.getOrderId());
+			orderItems.setOrderDetails(orderDetails);
 			orderItems.setTotalPrice(item.getTotalPrice());
 			product = productDAO.get(item.getProduct().getProductId());
-			int q = product.getCount();
+			int q = product.getStock();
 			q += item.getQuantity();
-			product.setCount(q);
+			product.setStock(q);
 			productDAO.saveOrUpdate(product);
 			orderItemsDAO.saveOrUpdate(orderItems);
+			Items.add(orderItems);
 			cartItemDAO.delete(item);
 		}
-		cart.setGrandTotal(0);
+		
+		orderDetails.setOrderItems(Items);
+		checkoutTemp.setOrderDetails(orderDetails);
+		/*cart.setGrandTotal(0);
 		cart.setNoOfProducts(0);
 		cartItemDAO.updateCart(cart);
-		session.setAttribute("noOfCartItems", cart.getNoOfProducts());
+		session.setAttribute("noOfCartItems", 0);*/
 		return "success";
 	}
 
